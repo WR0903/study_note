@@ -1,7 +1,7 @@
 # ubuntu16.04+Qt5.6配置opencv
 
 ## 首先确定自己安装ubuntu16.04,Qt5.6
-* 更新源：sudo apt-get update
+* 更新源：`sudo apt-get update`
 * 添加依赖项
 ```
 sudo apt-get install build-essential
@@ -10,7 +10,7 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
 ```
 * 下载源码：
 ```
-cd ~/<my_working_directory>  //比如工作目录为opencv即，cd ~/opencv
+cd ~/<my_working_directory>  //比如工作目录为opencv即，`cd ~/opencv`
 git clone https://github.com/Itseez/opencv.git
 git clone https://github.com/Itseez/opencv_contrib.git
 ```
@@ -25,10 +25,10 @@ cd build　　　//进入build目录
 cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=<path to opencv_contrib/modules/> ..
 ```
 **注：命令中最后的"  .. "（空格+两个点）千万不要忘记**  
-其中 CMAKE_BUILD_TYPE=Release / Debug  
+其中 `CMAKE_BUILD_TYPE=Release / Debug`  
 OPENCV_EXTRA_MODULES_PATH 就是用来指定要编译的扩展模块，后边加上刚下载的opencv_contrib模块的路径即可。
 * 把代码编译成可执行文件，这里官方推荐使用多进程编译，推荐七个进程：
-make -j7 # 并行运行七个jobs，这一步也在build目录中进行
+`make -j7 `# 并行运行七个jobs，这一步也在build目录中进行
 * 安装。
 `sudo make install`
 到这里没有结束哦！！！  
