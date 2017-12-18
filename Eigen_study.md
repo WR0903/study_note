@@ -1,4 +1,4 @@
-#Eigen study
+# Eigen study
 **eigen是个纯头文件编写的线性代数库，和matlab相似** 
 * `Eigen::Matrix<数据类型, 行（Eigen::Dynamic）, 列（Eigen::Dynamic）> 数组名称`//新建一个数组Eigen::Dynamic表示动态大小
 * `Eigen::Vector3d 向量名称`//新建向量，double 3×1
