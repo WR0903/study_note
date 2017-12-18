@@ -1,5 +1,15 @@
 #Eigen study
 **eigen是个纯头文件编写的线性代数库，和matlab相似**
+`Eigen::Matrix<数据类型, 行（Eigen::Dynamic）, 列（Eigen::Dynamic）> 数组名称`//新建一个数组Eigen::Dynamic表示动态大小
+`Eigen::Vector3d 向量名称`//新建向量，double 3×1
+`matrix_23.cast<新的类型>()`//强制数据类型转换
+`matrix_33.transpose()`//矩阵转置
+`matrix_33.sum() `//矩阵元素求和
+`matrix_33.trace()`//矩阵的迹，特征值的和
+`matrix_33.inverse()`//矩阵的逆
+`matrix_33.determinant()`//求行列式
+
+
 * eigenMatrix.cpp
 ```
 #include<iostream>
@@ -12,8 +22,8 @@ using namespace std;
 
 int main()
 {
-    Eigen::Matrix<float, 2, 3> matrix_23;//定义一个2x3矩阵
-    Eigen::Vector3d v_3d;//定义一个3x1矩阵
+    Eigen::Matrix<float, 2, 3> matrix_23;//定义一个float2x3矩阵
+    Eigen::Vector3d v_3d;//定义一个3x1矩阵,double类型的
     Eigen::Matrix3d matrix_33=Eigen::Matrix3d::Zero();//初始化为0
     Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic > matrix_dynamic;//定义一个动态矩阵
     Eigen::MatrixXd matrix_x;
@@ -23,16 +33,16 @@ int main()
        for(int j=0; j<2; j++)
           cout <<matrix_23(i,j)<<endl;
     v_3d <<3, 2, 1;
-    Eigen::Matrix<double, 2, 1> result =matrix_23.cast<double>() * v_3d;
-    matrix_33=Eigen::Matrix3d::Random();
+    Eigen::Matrix<double, 2, 1> result =matrix_23.cast<double>() * v_3d;//cast强制类型转换将float转换成double的
+    matrix_33=Eigen::Matrix3d::Random();//随机赋值
     cout <<matrix_33 <<endl <<endl;
-    cout <<matrix_33.transpose() <<endl;
-    cout <<matrix_33.sum() <<endl;
-    cout <<matrix_33.trace() <<endl;
-    cout <<matrix_33.inverse() <<endl;
-    cout <<10*matrix_33 <<endl;
-    cout <<matrix_33.determinant() <<endl;
-    Eigen::SelfAdjointEigenSolver<Eigen::Matrix3d> eigen_solver(matrix_33.transpose()*matrix_33);
+    cout <<matrix_33.transpose() <<endl;//转置
+    cout <<matrix_33.sum() <<endl;      //各个元素的求和
+    cout <<matrix_33.trace() <<endl;    //矩阵的迹，主对角线元素的和，特征值的和
+    cout <<matrix_33.inverse() <<endl;  //矩阵的逆
+    cout <<10*matrix_33 <<endl;         //数乘
+    cout <<matrix_33.determinant() <<endl;//行列式
+    Eigen::SelfAdjointEigenSolver<Eigen::Matrix3d> eigen_solver(matrix_33.transpose()*matrix_33);//求特征值特征向量
     cout <<"Eigen values =" << eigen_solver.eigenvalues() <<endl;
     cout <<"Eigen vectors =" << eigen_solver.eigenvectors() <<endl;
     Eigen::Matrix< double, MATRIX_SIZE, MATRIX_SIZE> matrix_NN;
