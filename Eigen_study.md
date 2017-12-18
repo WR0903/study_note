@@ -1,13 +1,13 @@
 #Eigen study
-**eigen是个纯头文件编写的线性代数库，和matlab相似**
-`Eigen::Matrix<数据类型, 行（Eigen::Dynamic）, 列（Eigen::Dynamic）> 数组名称`//新建一个数组Eigen::Dynamic表示动态大小
-`Eigen::Vector3d 向量名称`//新建向量，double 3×1
-`matrix_23.cast<新的类型>()`//强制数据类型转换
-`matrix_33.transpose()`//矩阵转置
-`matrix_33.sum() `//矩阵元素求和
-`matrix_33.trace()`//矩阵的迹，特征值的和
-`matrix_33.inverse()`//矩阵的逆
-`matrix_33.determinant()`//求行列式
+**eigen是个纯头文件编写的线性代数库，和matlab相似** 
+* `Eigen::Matrix<数据类型, 行（Eigen::Dynamic）, 列（Eigen::Dynamic）> 数组名称`//新建一个数组Eigen::Dynamic表示动态大小
+* `Eigen::Vector3d 向量名称`//新建向量，double 3×1
+* `matrix_23.cast<新的类型>()`//强制数据类型转换
+* `matrix_33.transpose()`//矩阵转置
+* `matrix_33.sum() `//矩阵元素求和
+* `matrix_33.trace()`//矩阵的迹，特征值的和
+* `matrix_33.inverse()`//矩阵的逆
+* `matrix_33.determinant()`//求行列式
 
 
 * eigenMatrix.cpp
