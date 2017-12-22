@@ -36,8 +36,9 @@ OPENCV_EXTRA_MODULES_PATH 就是用来指定要编译的扩展模块，后边加
 `sudo gedit /etc/ld.so.conf.d/opencv.conf` 复制`/usr/local/lib`保存  
 使用下面的动态库管理命令ldconfig，让opencv的相关链接库被系统共享
 `sudo ldconfig -v #会列出各种库`
-* 完成了动态库的共享，还不能使用opencv来编程，还需要为程序指定openvc的头文件位置。这里使用pkg-config命令来完成。首先在 `/etc/profile `中添加  
-`export  PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig `
+* 完成了动态库的共享，还不能使用opencv来编程，还需要为程序指定openvc的头文件位置。这里使用pkg-config命令来完成。
+* 打开文件bash.bashrc `sudo gedit /etc/bash.bashrc`中添加如下代码  
+`export  PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig ` 
 ## 测试
 ```
 cd ~/opencv-3.1.0/sample
