@@ -11,9 +11,9 @@ erode(I,D,element);
 blur(I,E,Size(7,7));
 ```
 * 边缘检测
-首先转成灰度图像
-`cvtColor(I,F,CV_BGR2GRAY);`
-然后模糊处理,我的理解是边缘以内的进行模糊，以更好的找到边缘
-`blur(F,G,Size(7,7));`
-边缘检测
-`Canny(G,G,3,9,3);`
+首先转成灰度图像  
+`cvtColor(I,F,CV_BGR2GRAY);`  
+然后模糊处理,我的理解是边缘以内的进行模糊，以更好的找到边缘  
+`blur(F,G,Size(7,7));`  
+边缘检测  
+`Canny(G,G,3,9,3);`  
