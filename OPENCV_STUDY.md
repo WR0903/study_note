@@ -17,3 +17,6 @@ blur(I,E,Size(7,7));
 `blur(F,G,Size(7,7));`  
 边缘检测  
 `Canny(G,G,3,9,3);`  
+
+* 打开一个新的窗口，添加插件用的比较多（比如滑动条，鼠标操作）
+`namedWindow("haha");`
