@@ -4,3 +4,4 @@
 * `git add .` 上交文件
 * `git commit -m "<备注内容>" `备注一下
 * `git push origin master` 上传成功
+* 在MD文件里写`![](1.jpg)`表示插入图片
