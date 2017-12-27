@@ -74,7 +74,10 @@ boxFilter(image,out,-1,Size(10,10));
 blur(image,out1,Size(10,10));
 GaussianBlur(image,out2,Size(5,5),0,0);
 ```
-
+* 中值滤波，孔径越大，图像越模糊，孔径大小只能选择奇数`medianBlur(image,out3,9);`
+![](median.png)
+* 双边滤波器，能滤掉噪点并保存边缘信息，但高频噪点不能很好的滤掉`bilateralFilter(image,out4,25,25*2,25/2);`  
+![](bf.png)
 
 
 
