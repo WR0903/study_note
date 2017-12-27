@@ -14,6 +14,7 @@ cd ~/<my_working_directory>  //比如工作目录为opencv即，`cd ~/opencv`
 git clone https://github.com/Itseez/opencv.git
 git clone https://github.com/Itseez/opencv_contrib.git
 ```
+![](1.png)
 * CMake Opencv源码：建立一个编译目录（例如：/build）把cmake后的文件都放在这里边。
 ```
 cd ~/opencv
