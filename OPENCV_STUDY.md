@@ -20,3 +20,11 @@ blur(I,E,Size(7,7));
 
 * 打开一个新的窗口，添加插件用的比较多（比如滑动条，鼠标操作）
 `namedWindow("haha");`
+
+* `saturate_cast()`就是防止数据溢出，具体的原理可以大致描述如下：
+```
+if(data<0)
+        data=0;
+if(data>255)
+data=255
+```
