@@ -21,12 +21,12 @@ INCLUDEPATH += /usr/local/include
 LIBS += /usr/local/lib/libopencv_*.so
 ```
 
-* 腐蚀操作，效果局部变黑
+* 腐蚀操作，效果局部变黑，原理是领域内找最小值
 ```
 Mat element=getStructuringElement(MORPH_RECT,Size(15,15));//获得结构元素内核矩阵
 erode(I,D,element);
 ```  
-![](erode.png)
+![](erode.png)   
 其中getStructuringElement会返回指定形状和大小的结构内核矩阵，它有三个元素，第一个元素是内核矩阵的形状，第二个参数是内核矩阵的大小，第三个参数是内核矩阵的瞄点位置（默认是中点）  
 ```
 矩形MORPH_RECT  
