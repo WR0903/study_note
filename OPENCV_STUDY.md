@@ -28,3 +28,32 @@ if(data<0)
 if(data>255)
 data=255
 ```
+
+* 对一张图片的每个像素乘以一个常数，照片的对比度改变，这个常数<1,对比度减小，这个常数>1，对比度增大;
+对一张图片的每个像素加上一个常数，照片的亮度改变，这个常数<0,亮度减小，这个常数>0，亮度增大;
+```
+for(int i=0;i<image.rows;i++)
+    {
+        for(int j=0;j<image.cols;j++)
+        {
+            for(int c=0;c<3;c++)
+            {
+                image.at<Vec3b>(i,j)[c]=saturate_cast<uchar>(0.5×image.at<Vec3b>(i,j)[c]+100);
+            }
+        }
+    }
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
