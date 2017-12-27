@@ -1,4 +1,4 @@
 # WHR
 **这个目录下是自己的学习笔记** 
 
-* 主要包括opencv、ros、slam
+* 主要包括opencv、ros、slam,在后续会加入图片，理解更深刻些
