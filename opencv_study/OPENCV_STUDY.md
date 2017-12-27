@@ -21,7 +21,7 @@ INCLUDEPATH += /usr/local/include
 LIBS += /usr/local/lib/libopencv_*.so
 ```
 
-* 腐蚀操作，效果局部变黑，原理是领域内找最小值
+* 腐蚀操作，效果局部变黑，原理是领域内找最小值  
 ```
 Mat element=getStructuringElement(MORPH_RECT,Size(15,15));//获得结构元素内核矩阵
 erode(I,D,element);
@@ -33,6 +33,9 @@ erode(I,D,element);
 交叉形MORPH_CROSS  
 椭圆形MORPH_ELLIPSE  
 ```
+* 膨胀操作，效果局部变亮，原理是领域内找最大值  
+![](dilate.png)   
+`dilate(I,D,element);`
 * 模糊操作，效果局部变淡
 ```
 blur(I,E,Size(7,7));
