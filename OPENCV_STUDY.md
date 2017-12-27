@@ -43,9 +43,16 @@ for(int i=0;i<image.rows;i++)
         }
     }
 ```
-* 方框滤波，内核矩阵越大图像越模糊,以下是我用10*10的内核矩阵
-![](srcImage.jpg)
-![](boxFilter.png)
+* 方框滤波，内核矩阵越大图像越模糊,以下是我用10*10的内核矩阵,均值滤波的效果和方框滤波相似（差别在于是否有归一化），效果都是如下  
+![](srcImage.jpg)  
+![](boxFilter.png)  
+高斯滤波，内核矩阵不能太大，所以模糊的比较小，效果如下  
+![](gaussianBlue.png)  
+```
+boxFilter(image,out,-1,Size(10,10));
+blur(image,out1,Size(10,10));
+GaussianBlur(image,out2,Size(5,5),0,0);
+```
 
 
 
