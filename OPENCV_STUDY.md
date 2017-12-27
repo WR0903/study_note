@@ -46,7 +46,7 @@ for(int i=0;i<image.rows;i++)
 * 方框滤波，内核矩阵越大图像越模糊
 
 
-![](1.jpg)
+![](/home/wr/1.jpg)
 
 
 
