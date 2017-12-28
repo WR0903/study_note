@@ -88,6 +88,10 @@ GaussianBlur(image,out2,Size(5,5),0,0);
 * 双边滤波器，能滤掉噪点并保存边缘信息，但高频噪点不能很好的滤掉`bilateralFilter(image,out4,25,25*2,25/2);`  
 ![](bf.png)
 
+* 掩码拷贝，掩码图像就是一个矩阵数据。里面有Width*Height个数据。像素值为0表示这点像素不处理，为1表示要处理。 `image.copyTo(out,dstImage);`  
+
+![](canny.png)
+图1为image，图2为dstImage，图3为out，dstImage为掩码图，掩码图中像素为0，即黑色部分不处理。
 
 
 
