@@ -90,8 +90,13 @@ GaussianBlur(image,out2,Size(5,5),0,0);
 
 * 掩码拷贝，掩码图像就是一个矩阵数据。里面有Width*Height个数据。像素值为0表示这点像素不处理，为1表示要处理。 `image.copyTo(out,dstImage);`  
 
-![](canny.png)
+![](canny.png)  
 图1为image，图2为dstImage，图3为out，dstImage为掩码图，掩码图中像素为0，即黑色部分不处理。
+* `int cvRound (double value)`
+对一个`double`型的数进行四舍五入，并返回一个整型数！  
+函数 `cvRound, cvFloor, cvCeil` 用一种舍入方法将输入浮点数转换成整数。 `cvRound `返回和参数最接近的整数值。 `cvFloor`返回不大于参数的最大整数值。  
+`cvCeil` 返回不小于参数的最小整数值。在某些体系结构中该函数 工作起来比标准 C 操作起来还要快。
+* `convertScaleAbs`先缩放元素再取绝对值，最后转换格式为8bit型
 
 
 
