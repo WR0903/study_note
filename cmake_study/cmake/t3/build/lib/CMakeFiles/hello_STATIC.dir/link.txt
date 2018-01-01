@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhello_STATIC.a  CMakeFiles/hello_STATIC.dir/hello.c.o
+/usr/bin/ranlib libhello_STATIC.a

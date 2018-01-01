@@ -1,0 +1,14 @@
+/home/wr/WHR/cmake_study/cmake/t3/build/CMakeFiles/install.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/CMakeFiles/list_install_components.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/CMakeFiles/install/strip.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/CMakeFiles/install/local.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/CMakeFiles/rebuild_cache.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/CMakeFiles/edit_cache.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/lib/CMakeFiles/install.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/lib/CMakeFiles/list_install_components.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/lib/CMakeFiles/rebuild_cache.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/lib/CMakeFiles/edit_cache.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/lib/CMakeFiles/hello.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/lib/CMakeFiles/hello_static.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/lib/CMakeFiles/install/strip.dir
+/home/wr/WHR/cmake_study/cmake/t3/build/lib/CMakeFiles/install/local.dir
