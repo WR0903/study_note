@@ -19,10 +19,10 @@ Point2d pixel2cam ( const Point2d& p, const Mat& K )
 int main( int argc, char** argv )
 {
     // 声明并从data文件夹里读取两个rgb与深度图
-    Mat rgb1 = imread( "/home/wr/study/RGB-D/PART1/CODE/data/rgb1.png");
-    Mat rgb2 = imread( "/home/wr/study/RGB-D/PART1/CODE/data/rgb2.png");
-    Mat depth1 = imread( "/home/wr/study/RGB-D/PART1/CODE/data/depth1.png", -1);
-    Mat depth2 = imread( "/home/wr/study/RGB-D/PART1/CODE/data/depth2.png", -1);
+    Mat rgb1 = imread( "/home/wr/WHR/RGB-D/PART1/CODE/data/rgb1.png");
+    Mat rgb2 = imread( "/home/wr/WHR/RGB-D/PART1/CODE/data/rgb2.png");
+    Mat depth1 = imread( "/home/wr/WHR/RGB-D/PART1/CODE/data/depth1.png", -1);
+    Mat depth2 = imread( "/home/wr/WHR/RGB-D/PART1/CODE/data/depth2.png", -1);
 
     Ptr<FeatureDetector> detector = ORB::create();
     Ptr<DescriptorExtractor> descriptor = ORB::create();
@@ -37,7 +37,7 @@ int main( int argc, char** argv )
     Mat imgShow;
     drawKeypoints( rgb1, kp1, imgShow, Scalar::all(-1), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
     imshow( "keypoints", imgShow );
-    imwrite( "/home/wr/study/RGB-D/PART1/CODE/data/keypoints.png", imgShow );
+    imwrite( "/home/wr/WHR/RGB-D/PART1/CODE/data/keypoints.png", imgShow );
     waitKey(0); //暂停等待一个按键
 
     // 计算描述子
@@ -55,7 +55,7 @@ int main( int argc, char** argv )
     Mat imgMatches;
     drawMatches( rgb1, kp1, rgb2, kp2, matches, imgMatches );
     imshow( "matches", imgMatches );
-    imwrite( "/home/wr/study/RGB-D/PART1/CODE/data/matches.png", imgMatches );
+    imwrite( "/home/wr/WHR/RGB-D/PART1/CODE/data/matches.png", imgMatches );
     waitKey( 0 );
 
     // 筛选匹配，把距离太大的去掉
@@ -79,12 +79,12 @@ int main( int argc, char** argv )
     cout<<"good matches="<<goodMatches.size()<<endl;
     drawMatches( rgb1, kp1, rgb2, kp2, goodMatches, imgMatches );
     imshow( "good matches", imgMatches );
-    imwrite( "/home/wr/study/RGB-D/PART1/CODE/data/good_matches.png", imgMatches );
+    imwrite( "/home/wr/WHR/RGB-D/PART1/CODE/data/good_matches.png", imgMatches );
     waitKey(0);
 
-    vector<Point3f> pts_3d;
+    vector<Point3f> pts_obj;
     // 第二个帧的图像点
-    vector< Point2f > pts_2d;
+    vector< Point2f > pts_img;
 
     // 相机内参
     CAMERA_INTRINSIC_PARAMETERS C;
@@ -94,7 +94,6 @@ int main( int argc, char** argv )
     C.fy = 519.0;
     C.scale = 1000.0;
 
-    Mat K = ( Mat_<double> ( 3,3 ) <<C.fx, 0, C.cx, 0, C.fy, C.cy,0, 0, 1);
     for (size_t i=0; i<goodMatches.size(); i++)
         {
             // query 是第一个, train 是第二个
@@ -103,21 +102,31 @@ int main( int argc, char** argv )
             ushort d = depth1.ptr<ushort>( int(p.y) )[ int(p.x) ];
             if (d == 0)
                 continue;
-            pts_2d.push_back( cv::Point2f( kp2[goodMatches[i].trainIdx].pt ) );
+            pts_img.push_back( cv::Point2f( kp2[goodMatches[i].trainIdx].pt ) );
 
             // 将(u,v,d)转成(x,y,z)
             cv::Point3f pt ( p.x, p.y, d );
             cv::Point3f pd = point2dTo3d( pt, C );
-            pts_3d.push_back( pd );
+            pts_obj.push_back( pd );
+        }
+
+        double camera_matrix_data[3][3] = {
+            {C.fx, 0, C.cx},
+            {0, C.fy, C.cy},
+            {0, 0, 1}
+        };
+
+        // 构建相机矩阵
+        cv::Mat cameraMatrix( 3, 3, CV_64F, camera_matrix_data );
+        cv::Mat rvec, tvec;
+        cout<<"good matches="<<cameraMatrix<<endl;
+        // 求解pnp
+      //  cv::solvePnPRansac( pts_obj, pts_img, cameraMatrix, cv::Mat(), rvec, tvec, false, 100, 1.0, 100, inliers );
+        solvePnP ( pts_obj, pts_img, cameraMatrix, Mat(), rvec, tvec, false );
+       // cout<<"inliers: "<<inliers.rows<<endl;
+        cout<<"R="<<rvec<<endl;
+        cout<<"t="<<tvec<<endl;
+
+
+        return 0;
     }
-
-    Mat rvec, tvec;
-    // 求解pnp
-    solvePnP( pts_3d, pts_2d, K, Mat(), rvec, tvec, false, SOLVEPNP_EPNP );
-    cout<<"R="<<rvec<<endl;
-    cout<<"t="<<tvec<<endl;
-
-
-
-    return 0;
-}
