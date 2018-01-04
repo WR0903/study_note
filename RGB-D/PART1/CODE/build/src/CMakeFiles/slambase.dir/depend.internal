@@ -3,7 +3,7 @@
 
 src/CMakeFiles/slambase.dir/slamBase.cpp.o
  ../include/slamBase.h
- /home/wr/study/RGB-D/PART1/CODE/src/slamBase.cpp
+ /home/wr/WHR/RGB-D/PART1/CODE/src/slamBase.cpp
  /opt/ros/kinetic/include/opencv-3.3.1/opencv/cxcore.h
  /opt/ros/kinetic/include/opencv-3.3.1/opencv2/calib3d.hpp
  /opt/ros/kinetic/include/opencv-3.3.1/opencv2/calib3d/calib3d_c.h

@@ -1,4 +1,4 @@
-# Install script for directory: /home/wr/study/RGB-D/PART1/CODE/src
+# Install script for directory: /home/wr/WHR/RGB-D/PART1/CODE/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

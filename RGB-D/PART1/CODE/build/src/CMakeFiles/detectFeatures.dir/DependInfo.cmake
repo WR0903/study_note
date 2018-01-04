@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/wr/study/RGB-D/PART1/CODE/src/detectFeatures.cpp" "/home/wr/study/RGB-D/PART1/CODE/build/src/CMakeFiles/detectFeatures.dir/detectFeatures.cpp.o"
+  "/home/wr/WHR/RGB-D/PART1/CODE/src/detectFeatures.cpp" "/home/wr/WHR/RGB-D/PART1/CODE/build/src/CMakeFiles/detectFeatures.dir/detectFeatures.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -63,7 +63,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/wr/study/RGB-D/PART1/CODE/build/src/CMakeFiles/slambase.dir/DependInfo.cmake"
+  "/home/wr/WHR/RGB-D/PART1/CODE/build/src/CMakeFiles/slambase.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

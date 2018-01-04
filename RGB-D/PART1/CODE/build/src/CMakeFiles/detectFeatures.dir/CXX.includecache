@@ -20,11 +20,11 @@ pcl/io/pcd_io.h
 pcl/point_types.h
 -
 
-/home/wr/study/RGB-D/PART1/CODE/src/detectFeatures.cpp
+/home/wr/WHR/RGB-D/PART1/CODE/src/detectFeatures.cpp
 iostream
 -
 slamBase.h
-/home/wr/study/RGB-D/PART1/CODE/src/slamBase.h
+/home/wr/WHR/RGB-D/PART1/CODE/src/slamBase.h
 opencv2/core/core.hpp
 -
 opencv2/features2d/features2d.hpp
