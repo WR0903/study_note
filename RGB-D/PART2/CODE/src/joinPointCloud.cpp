@@ -69,6 +69,10 @@ int main( int argc, char** argv )
     cout<<"translation"<<endl;
     Eigen::Translation<double,3> trans(result.tvec.at<double>(0,0), result.tvec.at<double>(0,1), result.tvec.at<double>(0,2));
     T = angle;
+
+    T(0,0)=-T(0,0);
+    T(1,1)=-T(1,1);
+    T(1,0)=-T(0,1);
     cout<<T.matrix()<<endl;
 //    T(0,3) = result.tvec.at<double>(0,0);
 //    T(1,3) = result.tvec.at<double>(0,1);
