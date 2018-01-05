@@ -34,11 +34,11 @@ int main( int argc, char** argv )
 
     // 提取特征并计算描述子
     cout<<"extracting features"<<endl;
-    string detecter = pd.getData( "detector" );
-    string descriptor = pd.getData( "descriptor" );
+ //   string detecter = pd.getData( "detector" );
+ //   string descriptor = pd.getData( "descriptor" );
 
-    computeKeyPointsAndDesp( frame1, detecter, descriptor );
-    computeKeyPointsAndDesp( frame2, detecter, descriptor );
+    computeKeyPointsAndDesp( frame1);
+    computeKeyPointsAndDesp( frame2);
 
     // 相机内参
     CAMERA_INTRINSIC_PARAMETERS camera;
@@ -64,23 +64,18 @@ int main( int argc, char** argv )
   
     // 将平移向量和旋转矩阵转换成变换矩阵
     Eigen::Isometry3d T = Eigen::Isometry3d::Identity();
-
+  //  Eigen::Isometry3d TT = Eigen::Isometry3d::Identity();
     Eigen::AngleAxisd angle(r);
     cout<<"translation"<<endl;
     Eigen::Translation<double,3> trans(result.tvec.at<double>(0,0), result.tvec.at<double>(0,1), result.tvec.at<double>(0,2));
     T = angle;
 
-    T(0,0)=-T(0,0);
-    T(1,1)=-T(1,1);
-    T(1,0)=-T(0,1);
-    cout<<T.matrix()<<endl;
-//    T(0,3) = result.tvec.at<double>(0,0);
-//    T(1,3) = result.tvec.at<double>(0,1);
-//    T(2,3) = result.tvec.at<double>(0,2);
+    //cout<<T.matrix()<<endl;
+    T(0,3) = result.tvec.at<double>(0,0);
+    T(1,3) = result.tvec.at<double>(0,1);
+    T(2,3) = result.tvec.at<double>(0,2);
 
-    T(0,3) = 0;
-    T(1,3) = 0;
-    T(2,3) = 0;
+
     cout<<T.matrix()<<endl;
     // 转换点云
     cout<<"converting image to clouds"<<endl;
@@ -90,12 +85,6 @@ int main( int argc, char** argv )
     // 合并点云
     cout<<"combining clouds"<<endl;
     PointCloud::Ptr output (new PointCloud());
-    PointCloud::Ptr output1 (new PointCloud());
-    *output1=*cloud1;
-    *output1 += *cloud2;
-    //pcl::io::savePCDFile("/home/wr/WHR/RGB-D/PART2/CODE/data/result1.pcd", *cloud1);
-    pcl::io::savePCDFile("/home/wr/WHR/RGB-D/PART2/CODE/data/result2.pcd", *output1);
-
     pcl::transformPointCloud( *cloud1, *output, T.matrix() );
     *output += *cloud2;
     pcl::io::savePCDFile("/home/wr/WHR/RGB-D/PART2/CODE/data/result.pcd", *output);

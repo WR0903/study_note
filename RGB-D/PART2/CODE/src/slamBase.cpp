@@ -56,14 +56,14 @@ cv::Point3f point2dTo3d( cv::Point3f& point, CAMERA_INTRINSIC_PARAMETERS& camera
     return p;
 }
 // computeKeyPointsAndDesp 同时提取关键点与特征描述子
-void computeKeyPointsAndDesp( FRAME& frame, string detector, string descriptor )
+void computeKeyPointsAndDesp( FRAME& frame)
 {
     //cv::Ptr<cv::FeatureDetector> _detector;
     //cv::Ptr<cv::DescriptorExtractor> _descriptor;
 
     cv::Ptr<cv::FeatureDetector> _detector = cv::ORB::create();
     cv::Ptr<cv::DescriptorExtractor> _descriptor = cv::ORB::create();
-
+    //cv::Ptr<cv::ORB> _detector = cv::ORB::create();
 //    _detector = cv::FeatureDetector::create( detector.c_str() );
 //    _descriptor = cv::FeatureDetector::create( descriptor.c_str() );
 
@@ -113,6 +113,16 @@ RESULT_OF_PNP estimateMotion( FRAME& frame1, FRAME& frame2, CAMERA_INTRINSIC_PAR
     // 第二个帧的图像点
     vector< cv::Point2f > pts_img;
 
+
+
+
+
+
+
+
+
+
+
     // 相机内参
     for (size_t i=0; i<goodMatches.size(); i++)
     {
@@ -130,24 +140,29 @@ RESULT_OF_PNP estimateMotion( FRAME& frame1, FRAME& frame2, CAMERA_INTRINSIC_PAR
         pts_obj.push_back( pd );
     }
 
+
+
     double camera_matrix_data[3][3] = {
         {camera.fx, 0, camera.cx},
         {0, camera.fy, camera.cy},
         {0, 0, 1}
     };
-
+//    cout<<camera_matrix_data[0][0]<<camera_matrix_data[0][1]<<camera_matrix_data[0][2]<<endl;
+//    cout<<camera_matrix_data[1][0]<<camera_matrix_data[1][1]<<camera_matrix_data[1][2]<<endl;
+//    cout<<camera_matrix_data[2][0]<<camera_matrix_data[2][1]<<camera_matrix_data[2][2]<<endl;
     cout<<"solving pnp"<<endl;
     // 构建相机矩阵
     cv::Mat cameraMatrix( 3, 3, CV_64F, camera_matrix_data );
     cv::Mat rvec, tvec;
+    Mat K = ( Mat_<double> ( 3,3 ) << camera.fx, 0, camera.cx,0, camera.fy, camera.cy, 0, 0, 1 );
     // 求解pnp
     //cv::solvePnPRansac( pts_obj, pts_img, cameraMatrix, cv::Mat(), rvec, tvec, false, 100, 1.0, 100, inliers );
-    cv::solvePnP ( pts_obj, pts_img, cameraMatrix, cv::Mat(), rvec, tvec, false );
-
+    cv::solvePnP ( pts_obj, pts_img, K, cv::Mat(), rvec, tvec, false );
+    //cv::solvePnPRansac( pts_obj, pts_img, cameraMatrix, cv::Mat(), rvec, tvec, false, 100, 1.0, 100, inliers );
     RESULT_OF_PNP result;
     result.rvec = rvec;
     result.tvec = tvec;
-    //result.inliers = inliers.rows;
+   // result.inliers = inliers.rows;
 
     return result;
 }
