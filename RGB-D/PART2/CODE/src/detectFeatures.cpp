@@ -19,10 +19,10 @@ Point2d pixel2cam ( const Point2d& p, const Mat& K )
 int main( int argc, char** argv )
 {
     // 声明并从data文件夹里读取两个rgb与深度图
-    Mat rgb1 = imread( "/home/wr/WHR/RGB-D/PART1/CODE/data/rgb1.png");
-    Mat rgb2 = imread( "/home/wr/WHR/RGB-D/PART1/CODE/data/rgb2.png");
-    Mat depth1 = imread( "/home/wr/WHR/RGB-D/PART1/CODE/data/depth1.png", -1);
-    Mat depth2 = imread( "/home/wr/WHR/RGB-D/PART1/CODE/data/depth2.png", -1);
+    Mat rgb1 = imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/6.png");
+    Mat rgb2 = imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/7.png");
+    Mat depth1 = imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/depth6.png", -1);
+    Mat depth2 = imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/depth7.png", -1);
 
     Ptr<FeatureDetector> detector = ORB::create();
     Ptr<DescriptorExtractor> descriptor = ORB::create();
@@ -71,7 +71,7 @@ int main( int argc, char** argv )
 
     for ( size_t i=0; i<matches.size(); i++ )
     {
-        if (matches[i].distance < 10*minDis)
+        if (matches[i].distance < max(10*minDis,30.0))
             goodMatches.push_back( matches[i] );
     }
 

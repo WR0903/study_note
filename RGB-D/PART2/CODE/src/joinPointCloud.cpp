@@ -27,10 +27,10 @@ int main( int argc, char** argv )
     FRAME frame1, frame2;
     
     //读取图像
-    frame1.rgb = cv::imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/rgb1.png" );
-    frame1.depth = cv::imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/depth1.png", -1);
-    frame2.rgb = cv::imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/rgb2.png" );
-    frame2.depth = cv::imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/depth2.png", -1 );
+    frame1.rgb = cv::imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/6.png" );
+    frame1.depth = cv::imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/depth6.png", -1);
+    frame2.rgb = cv::imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/7.png" );
+    frame2.depth = cv::imread( "/home/wr/WHR/RGB-D/PART2/CODE/data/depth7.png", -1 );
 
     // 提取特征并计算描述子
     cout<<"extracting features"<<endl;
