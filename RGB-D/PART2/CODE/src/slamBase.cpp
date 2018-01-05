@@ -63,15 +63,7 @@ void computeKeyPointsAndDesp( FRAME& frame)
 
     cv::Ptr<cv::FeatureDetector> _detector = cv::ORB::create();
     cv::Ptr<cv::DescriptorExtractor> _descriptor = cv::ORB::create();
-    //cv::Ptr<cv::ORB> _detector = cv::ORB::create();
-//    _detector = cv::FeatureDetector::create( detector.c_str() );
-//    _descriptor = cv::FeatureDetector::create( descriptor.c_str() );
 
-    //if (!_detector || !_descriptor)
-   // {
-   //     cerr<<"Unknown detector or discriptor type !"<<detector<<","<<descriptor<<endl;
-   //     return;
-   // }
 
     _detector->detect( frame.rgb, frame.kp );
     _descriptor->compute( frame.rgb, frame.kp, frame.desp );
@@ -147,9 +139,6 @@ RESULT_OF_PNP estimateMotion( FRAME& frame1, FRAME& frame2, CAMERA_INTRINSIC_PAR
         {0, camera.fy, camera.cy},
         {0, 0, 1}
     };
-//    cout<<camera_matrix_data[0][0]<<camera_matrix_data[0][1]<<camera_matrix_data[0][2]<<endl;
-//    cout<<camera_matrix_data[1][0]<<camera_matrix_data[1][1]<<camera_matrix_data[1][2]<<endl;
-//    cout<<camera_matrix_data[2][0]<<camera_matrix_data[2][1]<<camera_matrix_data[2][2]<<endl;
     cout<<"solving pnp"<<endl;
     // 构建相机矩阵
     cv::Mat cameraMatrix( 3, 3, CV_64F, camera_matrix_data );
@@ -157,7 +146,7 @@ RESULT_OF_PNP estimateMotion( FRAME& frame1, FRAME& frame2, CAMERA_INTRINSIC_PAR
     Mat K = ( Mat_<double> ( 3,3 ) << camera.fx, 0, camera.cx,0, camera.fy, camera.cy, 0, 0, 1 );
     // 求解pnp
     //cv::solvePnPRansac( pts_obj, pts_img, cameraMatrix, cv::Mat(), rvec, tvec, false, 100, 1.0, 100, inliers );
-    cv::solvePnP ( pts_obj, pts_img, K, cv::Mat(), rvec, tvec, false );
+    cv::solvePnP ( pts_obj, pts_img, K, cv::Mat(), rvec, tvec, false,cv::SOLVEPNP_EPNP );
     //cv::solvePnPRansac( pts_obj, pts_img, cameraMatrix, cv::Mat(), rvec, tvec, false, 100, 1.0, 100, inliers );
     RESULT_OF_PNP result;
     result.rvec = rvec;
