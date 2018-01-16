@@ -1,10 +1,3 @@
-/*************************************************************************
-    > File Name: src/jointPointCloud.cpp
-    > Author: Xiang gao
-    > Mail: gaoxiang12@mails.tsinghua.edu.cn 
-    > Created Time: 2015年07月22日 星期三 20时46分08秒
- ************************************************************************/
-
 #include<iostream>
 using namespace std;
 

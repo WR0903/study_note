@@ -1,10 +1,3 @@
-/*************************************************************************
-    > File Name: rgbd-slam-tutorial-gx/part V/src/visualOdometry.cpp
-    > Author: xiang gao
-    > Mail: gaoxiang12@mails.tsinghua.edu.cn
-    > Created Time: 2015年08月01日 星期六 15时35分42秒
- ************************************************************************/
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
