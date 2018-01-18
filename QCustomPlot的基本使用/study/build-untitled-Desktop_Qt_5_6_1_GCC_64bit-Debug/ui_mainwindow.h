@@ -41,7 +41,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         qcustomplotWidget = new QCustomPlot(centralWidget);
         qcustomplotWidget->setObjectName(QStringLiteral("qcustomplotWidget"));
-        qcustomplotWidget->setGeometry(QRect(70, 0, 291, 221));
+        qcustomplotWidget->setGeometry(QRect(40, 0, 411, 291));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
