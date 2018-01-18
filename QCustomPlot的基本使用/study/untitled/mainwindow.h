@@ -17,11 +17,12 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void demo1();
-    void demo2();
-    void demo3();
-    void demo4();
-    void demo5();
+    void demo_init();
+    void demo_widget1();
+    void demo_widget2();
+    void demo_widget3();
+    void demo_widget0();
+    void demo_widget4();
 
 private:
     Ui::MainWindow *ui;

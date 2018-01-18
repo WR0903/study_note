@@ -28,6 +28,10 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QCustomPlot *qcustomplotWidget;
+    QCustomPlot *qcustomplotWidget_1;
+    QCustomPlot *qcustomplotWidget_2;
+    QCustomPlot *qcustomplotWidget_3;
+    QCustomPlot *qcustomplotWidget_4;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -36,16 +40,28 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(491, 337);
+        MainWindow->resize(1001, 632);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         qcustomplotWidget = new QCustomPlot(centralWidget);
         qcustomplotWidget->setObjectName(QStringLiteral("qcustomplotWidget"));
-        qcustomplotWidget->setGeometry(QRect(40, 0, 411, 291));
+        qcustomplotWidget->setGeometry(QRect(10, 0, 421, 281));
+        qcustomplotWidget_1 = new QCustomPlot(centralWidget);
+        qcustomplotWidget_1->setObjectName(QStringLiteral("qcustomplotWidget_1"));
+        qcustomplotWidget_1->setGeometry(QRect(430, 0, 371, 281));
+        qcustomplotWidget_2 = new QCustomPlot(centralWidget);
+        qcustomplotWidget_2->setObjectName(QStringLiteral("qcustomplotWidget_2"));
+        qcustomplotWidget_2->setGeometry(QRect(800, 0, 351, 281));
+        qcustomplotWidget_3 = new QCustomPlot(centralWidget);
+        qcustomplotWidget_3->setObjectName(QStringLiteral("qcustomplotWidget_3"));
+        qcustomplotWidget_3->setGeometry(QRect(10, 280, 421, 241));
+        qcustomplotWidget_4 = new QCustomPlot(centralWidget);
+        qcustomplotWidget_4->setObjectName(QStringLiteral("qcustomplotWidget_4"));
+        qcustomplotWidget_4->setGeometry(QRect(430, 280, 371, 241));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 491, 31));
+        menuBar->setGeometry(QRect(0, 0, 1001, 31));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));

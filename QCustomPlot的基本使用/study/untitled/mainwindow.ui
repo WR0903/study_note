@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>491</width>
-    <height>337</height>
+    <width>1001</width>
+    <height>632</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,50 @@
    <widget class="QCustomPlot" name="qcustomplotWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>10</x>
       <y>0</y>
-      <width>411</width>
-      <height>291</height>
+      <width>421</width>
+      <height>281</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QCustomPlot" name="qcustomplotWidget_1">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>0</y>
+      <width>371</width>
+      <height>281</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QCustomPlot" name="qcustomplotWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>0</y>
+      <width>351</width>
+      <height>281</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QCustomPlot" name="qcustomplotWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>280</y>
+      <width>421</width>
+      <height>241</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QCustomPlot" name="qcustomplotWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>280</y>
+      <width>371</width>
+      <height>241</height>
      </rect>
     </property>
    </widget>
@@ -30,7 +70,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>491</width>
+     <width>1001</width>
      <height>31</height>
     </rect>
    </property>
