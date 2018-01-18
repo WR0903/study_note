@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     demo_widget3();
     demo_widget0();
     demo_widget4();
+    demo_widget5();
     connect(ui->qcustomplotWidget, SIGNAL(mousePress(QMouseEvent*)), this, SLOT(mousePress()));//连接鼠标点击信号和槽
     connect(ui->qcustomplotWidget, SIGNAL(mouseWheel(QWheelEvent*)), this, SLOT(mouseWheel()));//连接鼠标滚轮信号和槽
       //  connect(ui->qcustomplotWidget, SIGNAL(selectionChangedByUser()), this, SLOT(selectionChanged()));//连接曲线选择信号和槽
@@ -101,6 +102,22 @@ void MainWindow::demo_init()//所有窗口的初始化
     //ui->qcustomplotWidget->yAxis->setAutoTickStep(true);
     ui->qcustomplotWidget_4->yAxis->setSubTicks(true);
     ui->qcustomplotWidget_4->yAxis->setRange(-1,1.0);//数值范围
+
+    //第五个窗口的初始化
+    ui->qcustomplotWidget_5->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom|QCP::iSelectAxes |QCP::iSelectLegend | QCP::iSelectPlottables);
+    QBrush qBrush5(QColor(255,0,0));// 背景颜色
+    ui->qcustomplotWidget_5->setBackground(qBrush5);
+    ui->qcustomplotWidget_5->legend->setVisible(true);
+
+    ui->qcustomplotWidget_5->xAxis->setLabel("Time Axis(t/s)");
+    ui->qcustomplotWidget_5->xAxis->setTicks(true);//设置刻度使能
+    ui->qcustomplotWidget_5->xAxis->setRange(0.0,15.0);//数值范围
+
+    ui->qcustomplotWidget_5->yAxis->setLabel("EEG Channel");//设置ｙ轴
+    ui->qcustomplotWidget_5->yAxis->setTicks(true);
+    //ui->qcustomplotWidget->yAxis->setAutoTickStep(true);
+    ui->qcustomplotWidget_5->yAxis->setSubTicks(true);
+    ui->qcustomplotWidget_5->yAxis->setRange(-1,1.0);//数值范围
 }
 
 void MainWindow::demo_widget1()//普通的曲线
@@ -295,6 +312,44 @@ void MainWindow::demo_widget4()
     ui->qcustomplotWidget_4->yAxis->scaleRange(1.1, ui->qcustomplotWidget_4->yAxis->range().center());
     ui->qcustomplotWidget_4->xAxis->scaleRange(1.1, ui->qcustomplotWidget_4->xAxis->range().center());
     ui->qcustomplotWidget_4->axisRect()->setupFullAxesBox();
+}
+
+void MainWindow::demo_widget5()
+{
+    ui->qcustomplotWidget_5->axisRect()->setBackground(QPixmap("./solarpanels.jpg"));//使用图片做背景
+    ui->qcustomplotWidget_5->addGraph();
+    ui->qcustomplotWidget_5->graph()->setLineStyle(QCPGraph::lsLine);//线的风格
+    QPen pen;
+    pen.setColor(QColor(255, 200, 20, 200));
+    pen.setStyle(Qt::DashLine);
+    pen.setWidthF(2.5);
+    ui->qcustomplotWidget_5->graph()->setPen(pen);
+    ui->qcustomplotWidget_5->graph()->setBrush(QBrush(QColor(255,200,20,70)));
+    ui->qcustomplotWidget_5->graph()->setScatterStyle(QCPScatterStyle(QPixmap("./sun.png")));//线的分割点的形状
+    ui->qcustomplotWidget_5->graph()->setName("Data from Photovoltaic\nenergy barometer 2011");
+    QVector<double> year, value;
+    year  << 2005 << 2006 << 2007 << 2008  << 2009  << 2010 << 2011;
+    value << 2.17 << 3.42 << 4.94 << 10.38 << 15.86 << 29.33 << 52.1;
+    ui->qcustomplotWidget_5->graph()->setData(year, value);
+    ui->qcustomplotWidget_5->plotLayout()->insertRow(0);
+    ui->qcustomplotWidget_5->plotLayout()->addElement(0, 0, new QCPTextElement(ui->qcustomplotWidget_5, "Regenerative Energies", QFont("sans", 12, QFont::Bold)));
+    ui->qcustomplotWidget_5->xAxis->setLabel("Year");
+    ui->qcustomplotWidget_5->yAxis->setLabel("Installed Gigawatts of\nphotovoltaic in the European Union");
+    ui->qcustomplotWidget_5->xAxis2->setVisible(true);
+    ui->qcustomplotWidget_5->yAxis2->setVisible(true);
+    ui->qcustomplotWidget_5->xAxis2->setTickLabels(false);
+    ui->qcustomplotWidget_5->yAxis2->setTickLabels(false);
+    ui->qcustomplotWidget_5->xAxis2->setTicks(false);
+    ui->qcustomplotWidget_5->yAxis2->setTicks(false);
+    ui->qcustomplotWidget_5->xAxis2->setSubTicks(false);
+    ui->qcustomplotWidget_5->yAxis2->setSubTicks(false);
+    ui->qcustomplotWidget_5->xAxis->setRange(2004.5, 2011.5);
+    ui->qcustomplotWidget_5->yAxis->setRange(0, 52);
+    // setup legend:
+    ui->qcustomplotWidget_5->legend->setFont(QFont(font().family(), 7));
+    ui->qcustomplotWidget_5->legend->setIconSize(50, 20);
+    ui->qcustomplotWidget_5->legend->setVisible(true);
+    ui->qcustomplotWidget_5->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignLeft | Qt::AlignTop);
 }
 
 void MainWindow::mouseWheel()

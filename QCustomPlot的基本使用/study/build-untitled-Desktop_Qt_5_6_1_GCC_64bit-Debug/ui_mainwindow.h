@@ -32,6 +32,7 @@ public:
     QCustomPlot *qcustomplotWidget_2;
     QCustomPlot *qcustomplotWidget_3;
     QCustomPlot *qcustomplotWidget_4;
+    QCustomPlot *qcustomplotWidget_5;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -40,7 +41,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1001, 632);
+        MainWindow->resize(1216, 660);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         qcustomplotWidget = new QCustomPlot(centralWidget);
@@ -58,10 +59,13 @@ public:
         qcustomplotWidget_4 = new QCustomPlot(centralWidget);
         qcustomplotWidget_4->setObjectName(QStringLiteral("qcustomplotWidget_4"));
         qcustomplotWidget_4->setGeometry(QRect(430, 280, 371, 241));
+        qcustomplotWidget_5 = new QCustomPlot(centralWidget);
+        qcustomplotWidget_5->setObjectName(QStringLiteral("qcustomplotWidget_5"));
+        qcustomplotWidget_5->setGeometry(QRect(800, 280, 351, 241));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1001, 31));
+        menuBar->setGeometry(QRect(0, 0, 1216, 31));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1001</width>
-    <height>632</height>
+    <width>1216</width>
+    <height>660</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -64,13 +64,23 @@
      </rect>
     </property>
    </widget>
+   <widget class="QCustomPlot" name="qcustomplotWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>280</y>
+      <width>351</width>
+      <height>241</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1001</width>
+     <width>1216</width>
      <height>31</height>
     </rect>
    </property>
