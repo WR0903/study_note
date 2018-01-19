@@ -21,11 +21,11 @@ int main( int argc, char** argv )
     int currIndex = startIndex; // 当前索引为currIndex
     FRAME lastFrame = readFrame( currIndex, pd ); // 上一帧数据
     // 我们总是在比较currFrame和lastFrame
-    string detector = pd.getData( "detector" );
-    string descriptor = pd.getData( "descriptor" );
-    CAMERA_INTRINSIC_PARAMETERS camera = getDefaultCamera();
-    computeKeyPointsAndDesp( lastFrame);
-    PointCloud::Ptr cloud = image2PointCloud( lastFrame.rgb, lastFrame.depth, camera );
+  //  string detector = pd.getData( "detector" );
+  //  string descriptor = pd.getData( "descriptor" );
+    CAMERA_INTRINSIC_PARAMETERS camera = getDefaultCamera();//读取相机内参
+    computeKeyPointsAndDesp( lastFrame);//计算特征点
+    PointCloud::Ptr cloud = image2PointCloud( lastFrame.rgb, lastFrame.depth, camera );//把上一帧图像放在点云里
     
     pcl::visualization::CloudViewer viewer("viewer");
 
@@ -37,20 +37,20 @@ int main( int argc, char** argv )
 
     for ( currIndex=startIndex+1; currIndex<endIndex; currIndex++ )
     {
-        cout<<"Reading files "<<currIndex<<endl;
-        FRAME currFrame = readFrame( currIndex,pd ); // 读取currFrame
-        computeKeyPointsAndDesp( currFrame);
+        cout<<"Reading files "<<currIndex<<endl;//显示第几帧图像
+        FRAME currFrame = readFrame( currIndex,pd ); // 读取currFrame当前图像
+        computeKeyPointsAndDesp( currFrame);//计算当前图像的特征点
         // 比较currFrame 和 lastFrame
         RESULT_OF_PNP result = estimateMotion( lastFrame, currFrame, camera );
        // if ( result.inliers < min_inliers ) //inliers不够，放弃该帧
         //    continue;
-        // 计算运动范围是否太大
+        // 计算运动范围是否太大，如果太大就扔掉这帧图像
         double norm = normofTransform(result.rvec, result.tvec);
         cout<<"norm = "<<norm<<endl;
         if ( norm >= max_norm )
             continue;
-        Eigen::Isometry3d T = cvMat2Eigen( result.rvec, result.tvec );
-        cout<<"T="<<T.matrix()<<endl;
+        Eigen::Isometry3d T = cvMat2Eigen( result.rvec, result.tvec );//变换矩阵
+        cout<<"T="<<T.matrix()<<endl;//输出变换矩阵
         
         //cloud = joinPointCloud( cloud, currFrame, T.inverse(), camera );
         cloud = joinPointCloud( cloud, currFrame, T, camera );
