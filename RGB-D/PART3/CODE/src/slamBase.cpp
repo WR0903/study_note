@@ -8,7 +8,7 @@ using namespace cv;
 
 PointCloud::Ptr image2PointCloud( cv::Mat& rgb, cv::Mat& depth, CAMERA_INTRINSIC_PARAMETERS& camera )
 {
-    PointCloud::Ptr cloud ( new PointCloud );
+    PointCloud::Ptr cloud ( new PointCloud );//新建点云
 
     for (int m = 0; m < depth.rows; m++)
         for (int n=0; n < depth.cols; n++)
@@ -73,14 +73,14 @@ return;
 RESULT_OF_PNP estimateMotion( FRAME& frame1, FRAME& frame2, CAMERA_INTRINSIC_PARAMETERS& camera )
 {
     static ParameterReader pd;
-    vector< cv::DMatch > matches;
+    vector< cv::DMatch > matches;//新建匹配
     //cv::FlannBasedMatcher matcher;
-    Ptr<DescriptorMatcher> matcher  = DescriptorMatcher::create ( "BruteForce-Hamming" );
+    Ptr<DescriptorMatcher> matcher  = DescriptorMatcher::create ( "BruteForce-Hamming" );//暴力匹配
    // matcher.match( frame1.desp, frame2.desp, matches );
-    matcher->match ( frame1.desp, frame2.desp, matches );
+    matcher->match ( frame1.desp, frame2.desp, matches );//两图像进行匹配
 
-    cout<<"find total "<<matches.size()<<" matches."<<endl;
-    vector< cv::DMatch > goodMatches;
+    cout<<"find total "<<matches.size()<<" matches."<<endl;//打印匹配大小
+    vector< cv::DMatch > goodMatches;//新建好的匹配
     double minDis = 9999;
     double good_match_threshold = atof( pd.getData( "good_match_threshold" ).c_str() );
     for ( size_t i=0; i<matches.size(); i++ )
@@ -135,9 +135,9 @@ RESULT_OF_PNP estimateMotion( FRAME& frame1, FRAME& frame2, CAMERA_INTRINSIC_PAR
     //cv::solvePnPRansac( pts_obj, pts_img, cameraMatrix, cv::Mat(), rvec, tvec, false, 100, 1.0, 100, inliers );
     cv::solvePnP ( pts_obj, pts_img, K, cv::Mat(), rvec, tvec, false,cv::SOLVEPNP_EPNP );
     //cv::solvePnPRansac( pts_obj, pts_img, cameraMatrix, cv::Mat(), rvec, tvec, false, 100, 1.0, 100, inliers );
-    RESULT_OF_PNP result;
-    result.rvec = rvec;
-    result.tvec = tvec;
+    RESULT_OF_PNP result;//存放结果
+    result.rvec = rvec;//旋转矩阵
+    result.tvec = tvec;//位移向量
    // result.inliers = inliers.rows;
 
     return result;
@@ -176,7 +176,7 @@ PointCloud::Ptr joinPointCloud( PointCloud::Ptr original, FRAME& newFrame, Eigen
 
     // 合并点云
     PointCloud::Ptr output (new PointCloud());
-    pcl::transformPointCloud( *original, *output, T.matrix() );
+    pcl::transformPointCloud( *original, *output, T.matrix() );//把当前帧图像变换放在点云库里
     *newCloud += *output;
 
     // Voxel grid 滤波降采样
