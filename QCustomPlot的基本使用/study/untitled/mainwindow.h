@@ -24,6 +24,9 @@ public:
     void demo_widget0();
     void demo_widget4();
     void demo_widget5();
+    void demo_widget6();
+    void demo_widget7();
+    void demo_widget8();
 
 private:
     Ui::MainWindow *ui;

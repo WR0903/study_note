@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     demo_widget0();
     demo_widget4();
     demo_widget5();
+    demo_widget6();
+    demo_widget7();
+    demo_widget8();
     connect(ui->qcustomplotWidget, SIGNAL(mousePress(QMouseEvent*)), this, SLOT(mousePress()));//连接鼠标点击信号和槽
     connect(ui->qcustomplotWidget, SIGNAL(mouseWheel(QWheelEvent*)), this, SLOT(mouseWheel()));//连接鼠标滚轮信号和槽
       //  connect(ui->qcustomplotWidget, SIGNAL(selectionChangedByUser()), this, SLOT(selectionChanged()));//连接曲线选择信号和槽
@@ -103,7 +106,7 @@ void MainWindow::demo_init()//所有窗口的初始化
     ui->qcustomplotWidget_4->yAxis->setSubTicks(true);
     ui->qcustomplotWidget_4->yAxis->setRange(-1,1.0);//数值范围
 
-    //第五个窗口的初始化
+    //第六个窗口的初始化
     ui->qcustomplotWidget_5->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom|QCP::iSelectAxes |QCP::iSelectLegend | QCP::iSelectPlottables);
     QBrush qBrush5(QColor(255,0,0));// 背景颜色
     ui->qcustomplotWidget_5->setBackground(qBrush5);
@@ -118,6 +121,54 @@ void MainWindow::demo_init()//所有窗口的初始化
     //ui->qcustomplotWidget->yAxis->setAutoTickStep(true);
     ui->qcustomplotWidget_5->yAxis->setSubTicks(true);
     ui->qcustomplotWidget_5->yAxis->setRange(-1,1.0);//数值范围
+
+    //第七个窗口的初始化
+    ui->qcustomplotWidget_6->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom|QCP::iSelectAxes |QCP::iSelectLegend | QCP::iSelectPlottables);
+    QBrush qBrush6(QColor(100,200,100));// 背景颜色
+    ui->qcustomplotWidget_6->setBackground(qBrush6);
+    ui->qcustomplotWidget_6->legend->setVisible(true);
+
+    ui->qcustomplotWidget_6->xAxis->setLabel("Time Axis(t/s)");
+    ui->qcustomplotWidget_6->xAxis->setTicks(true);//设置刻度使能
+    ui->qcustomplotWidget_6->xAxis->setRange(0.0,15.0);//数值范围
+
+    ui->qcustomplotWidget_6->yAxis->setLabel("EEG Channel");//设置ｙ轴
+    ui->qcustomplotWidget_6->yAxis->setTicks(true);
+    //ui->qcustomplotWidget->yAxis->setAutoTickStep(true);
+    ui->qcustomplotWidget_6->yAxis->setSubTicks(true);
+    ui->qcustomplotWidget_6->yAxis->setRange(-1,1.0);//数值范围
+
+    //第八个窗口的初始化
+    ui->qcustomplotWidget_7->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom|QCP::iSelectAxes |QCP::iSelectLegend | QCP::iSelectPlottables);
+    QBrush qBrush7(QColor(150,50,50));// 背景颜色
+    ui->qcustomplotWidget_7->setBackground(qBrush7);
+    ui->qcustomplotWidget_7->legend->setVisible(true);
+
+    ui->qcustomplotWidget_7->xAxis->setLabel("Time Axis(t/s)");
+    ui->qcustomplotWidget_7->xAxis->setTicks(true);//设置刻度使能
+    ui->qcustomplotWidget_7->xAxis->setRange(0.0,15.0);//数值范围
+
+    ui->qcustomplotWidget_7->yAxis->setLabel("EEG Channel");//设置ｙ轴
+    ui->qcustomplotWidget_7->yAxis->setTicks(true);
+    //ui->qcustomplotWidget->yAxis->setAutoTickStep(true);
+    ui->qcustomplotWidget_7->yAxis->setSubTicks(true);
+    ui->qcustomplotWidget_7->yAxis->setRange(-1,1.0);//数值范围
+
+    //第九个窗口的初始化
+    ui->qcustomplotWidget_8->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom|QCP::iSelectAxes |QCP::iSelectLegend | QCP::iSelectPlottables);
+    QBrush qBrush8(QColor(200,100,100));// 背景颜色
+    ui->qcustomplotWidget_8->setBackground(qBrush8);
+    ui->qcustomplotWidget_8->legend->setVisible(true);
+
+    ui->qcustomplotWidget_8->xAxis->setLabel("Time Axis(t/s)");
+    ui->qcustomplotWidget_8->xAxis->setTicks(true);//设置刻度使能
+    ui->qcustomplotWidget_8->xAxis->setRange(0.0,15.0);//数值范围
+
+    ui->qcustomplotWidget_8->yAxis->setLabel("EEG Channel");//设置ｙ轴
+    ui->qcustomplotWidget_8->yAxis->setTicks(true);
+    //ui->qcustomplotWidget->yAxis->setAutoTickStep(true);
+    ui->qcustomplotWidget_8->yAxis->setSubTicks(true);
+    ui->qcustomplotWidget_8->yAxis->setRange(-1,1.0);//数值范围
 }
 
 void MainWindow::demo_widget1()//普通的曲线
@@ -350,6 +401,214 @@ void MainWindow::demo_widget5()
     ui->qcustomplotWidget_5->legend->setIconSize(50, 20);
     ui->qcustomplotWidget_5->legend->setVisible(true);
     ui->qcustomplotWidget_5->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignLeft | Qt::AlignTop);
+}
+
+void MainWindow::demo_widget6()
+{
+    ui->qcustomplotWidget_6->setLocale(QLocale(QLocale::English, QLocale::UnitedKingdom));
+    double now = QDateTime::currentDateTime().toTime_t();//获取当前的时间
+    srand(8);
+    for (int gi=0; gi<5; ++gi)//创建6个图层
+    {
+      ui->qcustomplotWidget_6->addGraph();
+      QColor color(20+200/4.0*gi,70*(1.6-gi/4.0), 150, 150);//颜色
+      ui->qcustomplotWidget_6->graph()->setLineStyle(QCPGraph::lsLine);//线型
+      ui->qcustomplotWidget_6->graph()->setPen(QPen(color.lighter(10)));//
+      ui->qcustomplotWidget_6->graph()->setBrush(QBrush(color));//曲线下面的阴影
+      // generate random walk data:
+      QVector<QCPGraphData> timeData(250);
+      for (int i=0; i<250; ++i)
+      {
+        timeData[i].key = now + 24*3600*i;
+        if (i == 0)
+          timeData[i].value = (i/50.0+1)*(rand()/(double)RAND_MAX-0.5);
+        else
+          timeData[i].value = qFabs(timeData[i-1].value)*(1+0.02/4.0*(4-gi)) + (i/50.0+1)*(rand()/(double)RAND_MAX-0.5);
+      }
+      ui->qcustomplotWidget_6->graph()->data()->set(timeData);
+    }
+    QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
+    dateTicker->setDateTimeFormat("d. MMMM\nyyyy");
+    ui->qcustomplotWidget_6->xAxis->setTicker(dateTicker);
+    QSharedPointer<QCPAxisTickerText> textTicker(new QCPAxisTickerText);
+    textTicker->addTick(10, "a bit\nlow");
+    textTicker->addTick(50, "quite\nhigh");
+    ui->qcustomplotWidget_6->yAxis->setTicker(textTicker);
+    ui->qcustomplotWidget_6->xAxis->setTickLabelFont(QFont(QFont().family(), 8));
+    ui->qcustomplotWidget_6->yAxis->setTickLabelFont(QFont(QFont().family(), 8));
+
+    ui->qcustomplotWidget_6->xAxis->setLabel("Date");
+    ui->qcustomplotWidget_6->yAxis->setLabel("Random wobbly lines value");
+    // make top and right axes visible but without ticks and labels:
+    ui->qcustomplotWidget_6->xAxis2->setVisible(true);
+    ui->qcustomplotWidget_6->yAxis2->setVisible(true);
+    ui->qcustomplotWidget_6->xAxis2->setTicks(false);
+    ui->qcustomplotWidget_6->yAxis2->setTicks(false);
+    ui->qcustomplotWidget_6->xAxis2->setTickLabels(false);
+    ui->qcustomplotWidget_6->yAxis2->setTickLabels(false);
+    // set axis ranges to show all data:
+    ui->qcustomplotWidget_6->xAxis->setRange(now, now+24*3600*249);
+    ui->qcustomplotWidget_6->yAxis->setRange(0, 60);
+    // show legend with slightly transparent background brush:
+    ui->qcustomplotWidget_6->legend->setVisible(true);
+    ui->qcustomplotWidget_6->legend->setBrush(QColor(255, 255, 255, 150));
+}
+void MainWindow::demo_widget7()
+{
+    ui->qcustomplotWidget_7->addGraph();
+    QPen redDotPen;
+    redDotPen.setStyle(Qt::DotLine);
+    redDotPen.setColor(QColor(170,100,100,180));
+    redDotPen.setWidthF(2);
+    ui->qcustomplotWidget_7->graph(0)->setPen(redDotPen);
+    ui->qcustomplotWidget_7->graph(0)->setBrush(QBrush(QPixmap("./balboa.jpg")));//阴影用图片
+    ui->qcustomplotWidget_7->addGraph();
+    ui->qcustomplotWidget_7->graph(1)->setPen(QPen(Qt::red));
+
+    // activate channel fill for graph 0 towards graph 1:
+    ui->qcustomplotWidget_7->graph(0)->setChannelFillGraph(ui->qcustomplotWidget_7->graph(1));//两个曲线的封闭加阴影
+
+    // generate data:
+    QVector<double> x(250);
+    QVector<double> y0(250), y1(250);
+    for (int i=0; i<250; ++i)
+    {
+      // just playing with numbers, not much to learn here
+      x[i] = 3*i/250.0;
+      y0[i] = 1+qExp(-x[i]*x[i]*0.8)*(x[i]*x[i]+x[i]);
+      y1[i] = 1-qExp(-x[i]*x[i]*0.4)*(x[i]*x[i])*0.1;
+    }
+
+    // pass data points to graphs:
+    ui->qcustomplotWidget_7->graph(0)->setData(x, y0);
+    ui->qcustomplotWidget_7->graph(1)->setData(x, y1);
+    // activate top and right axes, which are invisible by default:
+    ui->qcustomplotWidget_7->xAxis2->setVisible(true);
+    ui->qcustomplotWidget_7->yAxis2->setVisible(true);
+    // make tick labels invisible on top and right axis:
+    ui->qcustomplotWidget_7->xAxis2->setTickLabels(false);
+    ui->qcustomplotWidget_7->yAxis2->setTickLabels(false);
+    // set ranges:
+    ui->qcustomplotWidget_7->xAxis->setRange(0, 2.5);
+    ui->qcustomplotWidget_7->yAxis->setRange(0.9, 1.6);
+    // assign top/right axes same properties as bottom/left:
+    ui->qcustomplotWidget_7->axisRect()->setupFullAxesBox();
+}
+
+void MainWindow::demo_widget8()
+{
+    ui->qcustomplotWidget_8->setLocale(QLocale(QLocale::English, QLocale::UnitedKingdom)); // period as decimal separator and comma as thousand separator
+    ui->qcustomplotWidget_8->legend->setVisible(true);
+    QFont legendFont = font();  // start out with MainWindow's font..
+    legendFont.setPointSize(9); // and make a bit smaller for legend
+    ui->qcustomplotWidget_8->legend->setFont(legendFont);
+    ui->qcustomplotWidget_8->legend->setBrush(QBrush(QColor(255,255,255,230)));
+    // by default, the legend is in the inset layout of the main axis rect. So this is how we access it to change legend placement:
+    ui->qcustomplotWidget_8->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignBottom|Qt::AlignRight);
+
+    // setup for graph 0: key axis left, value axis bottom
+    // will contain left maxwell-like function
+    ui->qcustomplotWidget_8->addGraph(ui->qcustomplotWidget_8->yAxis, ui->qcustomplotWidget_8->xAxis);
+    ui->qcustomplotWidget_8->graph(0)->setPen(QPen(QColor(255, 100, 0)));
+    ui->qcustomplotWidget_8->graph(0)->setBrush(QBrush(QPixmap("./balboa.jpg"))); // fill with texture of specified image
+    ui->qcustomplotWidget_8->graph(0)->setLineStyle(QCPGraph::lsLine);
+    ui->qcustomplotWidget_8->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssDisc, 5));
+   // ui->qcustomplotWidget_8->graph(0)->setName("Left maxwell function");
+
+    // setup for graph 1: key axis bottom, value axis left (those are the default axes)
+    // will contain bottom maxwell-like function with error bars
+    ui->qcustomplotWidget_8->addGraph();
+    ui->qcustomplotWidget_8->graph(1)->setPen(QPen(Qt::red));
+    ui->qcustomplotWidget_8->graph(1)->setBrush(QBrush(QPixmap("./balboa.jpg"))); // same fill as we used for graph 0
+    ui->qcustomplotWidget_8->graph(1)->setLineStyle(QCPGraph::lsStepCenter);
+    ui->qcustomplotWidget_8->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, Qt::red, Qt::white, 7));
+   // ui->qcustomplotWidget_8->graph(1)->setName("Bottom maxwell function");
+    QCPErrorBars *errorBars = new QCPErrorBars(ui->qcustomplotWidget_8->xAxis, ui->qcustomplotWidget_8->yAxis);
+    errorBars->removeFromLegend();
+    errorBars->setDataPlottable(ui->qcustomplotWidget_8->graph(1));
+
+    // setup for graph 2: key axis top, value axis right
+    // will contain high frequency sine with low frequency beating:
+    ui->qcustomplotWidget_8->addGraph(ui->qcustomplotWidget_8->xAxis2, ui->qcustomplotWidget_8->yAxis2);
+    ui->qcustomplotWidget_8->graph(2)->setPen(QPen(Qt::blue));
+    //ui->qcustomplotWidget_8->graph(2)->setName("High frequency sine");
+
+    // setup for graph 3: same axes as graph 2
+    // will contain low frequency beating envelope of graph 2
+    ui->qcustomplotWidget_8->addGraph(ui->qcustomplotWidget_8->xAxis2, ui->qcustomplotWidget_8->yAxis2);
+    QPen blueDotPen;
+    blueDotPen.setColor(QColor(30, 40, 255, 150));
+    blueDotPen.setStyle(Qt::DotLine);
+    blueDotPen.setWidthF(4);
+    ui->qcustomplotWidget_8->graph(3)->setPen(blueDotPen);
+   // ui->qcustomplotWidget_8->graph(3)->setName("Sine envelope");
+
+    // setup for graph 4: key axis right, value axis top
+    // will contain parabolically distributed data points with some random perturbance
+    ui->qcustomplotWidget_8->addGraph(ui->qcustomplotWidget_8->yAxis2, ui->qcustomplotWidget_8->xAxis2);
+    ui->qcustomplotWidget_8->graph(4)->setPen(QColor(50, 50, 50, 255));
+    ui->qcustomplotWidget_8->graph(4)->setLineStyle(QCPGraph::lsNone);
+    ui->qcustomplotWidget_8->graph(4)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 4));
+   // ui->qcustomplotWidget_8->graph(4)->setName("Some random data around\na quadratic function");
+
+    // generate data, just playing with numbers, not much to learn here:
+    QVector<double> x0(25), y0(25);
+    QVector<double> x1(15), y1(15), y1err(15);
+    QVector<double> x2(250), y2(250);
+    QVector<double> x3(250), y3(250);
+    QVector<double> x4(250), y4(250);
+    for (int i=0; i<25; ++i) // data for graph 0
+    {
+      x0[i] = 3*i/25.0;
+      y0[i] = qExp(-x0[i]*x0[i]*0.8)*(x0[i]*x0[i]+x0[i]);
+    }
+    for (int i=0; i<15; ++i) // data for graph 1
+    {
+      x1[i] = 3*i/15.0;;
+      y1[i] = qExp(-x1[i]*x1[i])*(x1[i]*x1[i])*2.6;
+      y1err[i] = y1[i]*0.25;
+    }
+    for (int i=0; i<250; ++i) // data for graphs 2, 3 and 4
+    {
+      x2[i] = i/250.0*3*M_PI;
+      x3[i] = x2[i];
+      x4[i] = i/250.0*100-50;
+      y2[i] = qSin(x2[i]*12)*qCos(x2[i])*10;
+      y3[i] = qCos(x3[i])*10;
+      y4[i] = 0.01*x4[i]*x4[i] + 1.5*(rand()/(double)RAND_MAX-0.5) + 1.5*M_PI;
+    }
+
+    // pass data points to graphs:
+    ui->qcustomplotWidget_8->graph(0)->setData(x0, y0);
+    ui->qcustomplotWidget_8->graph(1)->setData(x1, y1);
+    errorBars->setData(y1err);
+    ui->qcustomplotWidget_8->graph(2)->setData(x2, y2);
+    ui->qcustomplotWidget_8->graph(3)->setData(x3, y3);
+    ui->qcustomplotWidget_8->graph(4)->setData(x4, y4);
+    // activate top and right axes, which are invisible by default:
+    ui->qcustomplotWidget_8->xAxis2->setVisible(true);
+    ui->qcustomplotWidget_8->yAxis2->setVisible(true);
+    // set ranges appropriate to show data:
+    ui->qcustomplotWidget_8->xAxis->setRange(0, 2.7);
+    ui->qcustomplotWidget_8->yAxis->setRange(0, 2.6);
+    ui->qcustomplotWidget_8->xAxis2->setRange(0, 3.0*M_PI);
+    ui->qcustomplotWidget_8->yAxis2->setRange(-70, 35);
+    // set pi ticks on top axis:
+    ui->qcustomplotWidget_8->xAxis2->setTicker(QSharedPointer<QCPAxisTickerPi>(new QCPAxisTickerPi));
+    // add title layout element:
+    ui->qcustomplotWidget_8->plotLayout()->insertRow(0);
+    ui->qcustomplotWidget_8->plotLayout()->addElement(0, 0, new QCPTextElement(ui->qcustomplotWidget_8, "Way too many graphs in one plot", QFont("sans", 12, QFont::Bold)));
+    // set labels:
+    ui->qcustomplotWidget_8->xAxis->setLabel("Bottom axis with outward ticks");
+    ui->qcustomplotWidget_8->yAxis->setLabel("Left axis label");
+    ui->qcustomplotWidget_8->xAxis2->setLabel("Top axis label");
+    ui->qcustomplotWidget_8->yAxis2->setLabel("Right axis label");
+    // make ticks on bottom axis go outward:
+    ui->qcustomplotWidget_8->xAxis->setTickLength(0, 5);
+    ui->qcustomplotWidget_8->xAxis->setSubTickLength(0, 3);
+    // make ticks on right axis go inward and outward:
+    ui->qcustomplotWidget_8->yAxis2->setTickLength(3, 3);
+    ui->qcustomplotWidget_8->yAxis2->setSubTickLength(1, 1);
 }
 
 void MainWindow::mouseWheel()
