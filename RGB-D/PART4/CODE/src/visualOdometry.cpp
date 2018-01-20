@@ -66,7 +66,7 @@ int main( int argc, char** argv )
  
      // 初始化求解器
     // SlamLinearSolver* linearSolver = new SlamLinearSolver();
-    SlamBlockSolver::LinearSolverType* linearSolver = new g2o::LinearSolverCSparse<SlamBlockSolver::PoseMatrixType>();
+    SlamBlockSolver::LinearSolverType* linearSolver = new         		g2o::LinearSolverCSparse<SlamBlockSolver::PoseMatrixType>();
      //linearSolver->setBlockOrdering( false );
      SlamBlockSolver* blockSolver = new SlamBlockSolver( linearSolver );
      g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg( blockSolver );
@@ -143,10 +143,10 @@ int main( int argc, char** argv )
     //pcl::io::savePCDFile( "/home/wr/WHR/RGB-D/PART3/CODE/data/result.pcd", *cloud );
 
      cout<<"optimizing pose graph, vertices: "<<globalOptimizer.vertices().size()<<endl;
-     globalOptimizer.save("/home/wr/WHR/RGB-D/PART3/CODE/data/result_before.g2o");
+     globalOptimizer.save("/home/wr/WHR/RGB-D/PART4/CODE/data/result_before.g2o");
      globalOptimizer.initializeOptimization();
      globalOptimizer.optimize( 100 ); //可以指定优化步数
-     globalOptimizer.save( "/home/wr/WHR/RGB-D/PART3/CODE/data/result_after.g2o" );
+     globalOptimizer.save( "/home/wr/WHR/RGB-D/PART4/CODE/data/result_after.g2o" );
      cout<<"Optimization done."<<endl;
  
      globalOptimizer.clear();

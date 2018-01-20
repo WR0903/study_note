@@ -176,6 +176,19 @@ detectFeatures/fast:
 .PHONY : detectFeatures/fast
 
 #=============================================================================
+# Target rules for targets named slam
+
+# Build rule for target.
+slam: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 slam
+.PHONY : slam
+
+# fast build rule for target.
+slam/fast:
+	$(MAKE) -f src/CMakeFiles/slam.dir/build.make src/CMakeFiles/slam.dir/build
+.PHONY : slam/fast
+
+#=============================================================================
 # Target rules for targets named generate_pointcloud
 
 # Build rule for target.
@@ -201,6 +214,7 @@ help:
 	@echo "... main"
 	@echo "... slambase"
 	@echo "... detectFeatures"
+	@echo "... slam"
 	@echo "... generate_pointcloud"
 .PHONY : help
 

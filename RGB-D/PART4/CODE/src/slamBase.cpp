@@ -10,8 +10,8 @@ PointCloud::Ptr image2PointCloud( cv::Mat& rgb, cv::Mat& depth, CAMERA_INTRINSIC
 {
     PointCloud::Ptr cloud ( new PointCloud );//新建点云
 
-    for (int m = 0; m < depth.rows; m++)
-        for (int n=0; n < depth.cols; n++)
+    for (int m = 0; m < depth.rows; m+=2)
+        for (int n=0; n < depth.cols; n+=2)
         {
             // 获取深度图中(m,n)处的值
             ushort d = depth.ptr<ushort>(m)[n];
@@ -152,12 +152,16 @@ Eigen::Isometry3d cvMat2Eigen( cv::Mat& rvec, cv::Mat& tvec )
     cv::Rodrigues( rvec, R );
     Eigen::Matrix3d r;
    // cv::cv2eigen(R, r);
-    cv::cv2eigen(R, r);
+   // cv::cv2eigen(R, r);
+
+for ( int i=0; i<3; i++ )
+        for ( int j=0; j<3; j++ ) 
+            r(i,j) = R.at<double>(i,j);
     // 将平移向量和旋转矩阵转换成变换矩阵
     Eigen::Isometry3d T = Eigen::Isometry3d::Identity();
 
     Eigen::AngleAxisd angle(r);
-    Eigen::Translation<double,3> trans(tvec.at<double>(0,0), tvec.at<double>(0,1), tvec.at<double>(0,2));
+    //Eigen::Translation<double,3> trans(tvec.at<double>(0,0), tvec.at<double>(0,1), tvec.at<double>(0,2));
     T = angle;
     T(0,3) = tvec.at<double>(0,0); 
     T(1,3) = tvec.at<double>(0,1); 

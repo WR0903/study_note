@@ -68,6 +68,7 @@ src/all: src/CMakeFiles/joinPointCloud.dir/all
 src/all: src/CMakeFiles/main.dir/all
 src/all: src/CMakeFiles/slambase.dir/all
 src/all: src/CMakeFiles/detectFeatures.dir/all
+src/all: src/CMakeFiles/slam.dir/all
 src/all: src/CMakeFiles/generate_pointcloud.dir/all
 
 .PHONY : src/all
@@ -78,6 +79,7 @@ src/clean: src/CMakeFiles/joinPointCloud.dir/clean
 src/clean: src/CMakeFiles/main.dir/clean
 src/clean: src/CMakeFiles/slambase.dir/clean
 src/clean: src/CMakeFiles/detectFeatures.dir/clean
+src/clean: src/CMakeFiles/slam.dir/clean
 src/clean: src/CMakeFiles/generate_pointcloud.dir/clean
 
 .PHONY : src/clean
@@ -94,7 +96,7 @@ src/preinstall:
 src/CMakeFiles/visualOdometry.dir/all: src/CMakeFiles/slambase.dir/all
 	$(MAKE) -f src/CMakeFiles/visualOdometry.dir/build.make src/CMakeFiles/visualOdometry.dir/depend
 	$(MAKE) -f src/CMakeFiles/visualOdometry.dir/build.make src/CMakeFiles/visualOdometry.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wr/WHR/RGB-D/PART4/CODE/build/CMakeFiles --progress-num=11,12 "Built target visualOdometry"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wr/WHR/RGB-D/PART4/CODE/build/CMakeFiles --progress-num=13,14 "Built target visualOdometry"
 .PHONY : src/CMakeFiles/visualOdometry.dir/all
 
 # Include target in all.
@@ -205,7 +207,7 @@ clean: src/CMakeFiles/main.dir/clean
 src/CMakeFiles/slambase.dir/all:
 	$(MAKE) -f src/CMakeFiles/slambase.dir/build.make src/CMakeFiles/slambase.dir/depend
 	$(MAKE) -f src/CMakeFiles/slambase.dir/build.make src/CMakeFiles/slambase.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wr/WHR/RGB-D/PART4/CODE/build/CMakeFiles --progress-num=9,10 "Built target slambase"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wr/WHR/RGB-D/PART4/CODE/build/CMakeFiles --progress-num=11,12 "Built target slambase"
 .PHONY : src/CMakeFiles/slambase.dir/all
 
 # Include target in all.
@@ -269,6 +271,43 @@ src/CMakeFiles/detectFeatures.dir/clean:
 
 # clean rule for target.
 clean: src/CMakeFiles/detectFeatures.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target src/CMakeFiles/slam.dir
+
+# All Build rule for target.
+src/CMakeFiles/slam.dir/all: src/CMakeFiles/slambase.dir/all
+	$(MAKE) -f src/CMakeFiles/slam.dir/build.make src/CMakeFiles/slam.dir/depend
+	$(MAKE) -f src/CMakeFiles/slam.dir/build.make src/CMakeFiles/slam.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wr/WHR/RGB-D/PART4/CODE/build/CMakeFiles --progress-num=9,10 "Built target slam"
+.PHONY : src/CMakeFiles/slam.dir/all
+
+# Include target in all.
+all: src/CMakeFiles/slam.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+src/CMakeFiles/slam.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wr/WHR/RGB-D/PART4/CODE/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/slam.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wr/WHR/RGB-D/PART4/CODE/build/CMakeFiles 0
+.PHONY : src/CMakeFiles/slam.dir/rule
+
+# Convenience name for target.
+slam: src/CMakeFiles/slam.dir/rule
+
+.PHONY : slam
+
+# clean rule for target.
+src/CMakeFiles/slam.dir/clean:
+	$(MAKE) -f src/CMakeFiles/slam.dir/build.make src/CMakeFiles/slam.dir/clean
+.PHONY : src/CMakeFiles/slam.dir/clean
+
+# clean rule for target.
+clean: src/CMakeFiles/slam.dir/clean
 
 .PHONY : clean
 

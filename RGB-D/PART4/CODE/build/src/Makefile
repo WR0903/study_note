@@ -186,6 +186,21 @@ detectFeatures/fast:
 .PHONY : detectFeatures/fast
 
 # Convenience name for target.
+src/CMakeFiles/slam.dir/rule:
+	cd /home/wr/WHR/RGB-D/PART4/CODE/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/slam.dir/rule
+.PHONY : src/CMakeFiles/slam.dir/rule
+
+# Convenience name for target.
+slam: src/CMakeFiles/slam.dir/rule
+
+.PHONY : slam
+
+# fast build rule for target.
+slam/fast:
+	cd /home/wr/WHR/RGB-D/PART4/CODE/build && $(MAKE) -f src/CMakeFiles/slam.dir/build.make src/CMakeFiles/slam.dir/build
+.PHONY : slam/fast
+
+# Convenience name for target.
 src/CMakeFiles/generate_pointcloud.dir/rule:
 	cd /home/wr/WHR/RGB-D/PART4/CODE/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/generate_pointcloud.dir/rule
 .PHONY : src/CMakeFiles/generate_pointcloud.dir/rule
@@ -308,6 +323,33 @@ main.cpp.s:
 	cd /home/wr/WHR/RGB-D/PART4/CODE/build && $(MAKE) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+slam.o: slam.cpp.o
+
+.PHONY : slam.o
+
+# target to build an object file
+slam.cpp.o:
+	cd /home/wr/WHR/RGB-D/PART4/CODE/build && $(MAKE) -f src/CMakeFiles/slam.dir/build.make src/CMakeFiles/slam.dir/slam.cpp.o
+.PHONY : slam.cpp.o
+
+slam.i: slam.cpp.i
+
+.PHONY : slam.i
+
+# target to preprocess a source file
+slam.cpp.i:
+	cd /home/wr/WHR/RGB-D/PART4/CODE/build && $(MAKE) -f src/CMakeFiles/slam.dir/build.make src/CMakeFiles/slam.dir/slam.cpp.i
+.PHONY : slam.cpp.i
+
+slam.s: slam.cpp.s
+
+.PHONY : slam.s
+
+# target to generate assembly for a file
+slam.cpp.s:
+	cd /home/wr/WHR/RGB-D/PART4/CODE/build && $(MAKE) -f src/CMakeFiles/slam.dir/build.make src/CMakeFiles/slam.dir/slam.cpp.s
+.PHONY : slam.cpp.s
+
 slamBase.o: slamBase.cpp.o
 
 .PHONY : slamBase.o
@@ -375,6 +417,7 @@ help:
 	@echo "... main"
 	@echo "... slambase"
 	@echo "... detectFeatures"
+	@echo "... slam"
 	@echo "... generate_pointcloud"
 	@echo "... detectFeatures.o"
 	@echo "... detectFeatures.i"
@@ -388,6 +431,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... slam.o"
+	@echo "... slam.i"
+	@echo "... slam.s"
 	@echo "... slamBase.o"
 	@echo "... slamBase.i"
 	@echo "... slamBase.s"
