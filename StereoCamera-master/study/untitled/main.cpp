@@ -85,8 +85,8 @@ int main()
 		int chessborad_num, cols, rows, width;
         stringstream ss_l;
         stringstream ss_r;
-        string rgbDir_l="/home/wr/WHR/StereoCamera-master/study/left_select/";
-        string rgbDir_r="/home/wr/WHR/StereoCamera-master/study/right_select/";
+        string rgbDir_l="/home/wr/WHR/StereoCamera-master/study/air_calibration_datas/left/";
+        string rgbDir_r="/home/wr/WHR/StereoCamera-master/study/air_calibration_datas/right/";
         string rgbExt=".png";
         string filename_l;
         string filename_r;
@@ -118,13 +118,15 @@ int main()
             int success = sc.detectCorners(im_left, im_right, cornerDatas[0], imageCount);
             imshow(filename_l, im_left);
             imshow(filename_r, im_right);
+            cout<<imageCount<<endl;
 			if (success) {
 				imageCount++;
-                //waitKey(0);
+              //  waitKey(0);
                 if (imageCount == chessborad_num)
                     break;
 
 			}
+
 			else if (waitKey(30) == 27)
 				break;
 		}

@@ -513,9 +513,10 @@ int StereoCalib::calibrateStereoCamera(CornerDatas& cornerDatas, StereoParams& s
 			stereoParams.cameraParams1.distortionCoefficients,
 			stereoParams.cameraParams1.rotations,
 			stereoParams.cameraParams1.translations,
-			stereoParams.cameraParams1.flags
+            stereoParams.cameraParams1.flags +cv::CALIB_FIX_K3 + cv::CALIB_FIX_K4 + cv::CALIB_FIX_K5,
+            cv::TermCriteria(cv::TermCriteria::COUNT + cv::TermCriteria::EPS, 30, 1e-6)
 		);
-
+saveCameraParams(stereoParams.cameraParams1, "/home/wr/WHR/StereoCamera-master/study/cameraParams_left.yml");
 		cv::calibrateCamera(
 			cornerDatas.objectPoints,
 			cornerDatas.imagePoints2,
@@ -524,14 +525,15 @@ int StereoCalib::calibrateStereoCamera(CornerDatas& cornerDatas, StereoParams& s
 			stereoParams.cameraParams2.distortionCoefficients,
 			stereoParams.cameraParams2.rotations,
 			stereoParams.cameraParams2.translations,
-			stereoParams.cameraParams2.flags
+            stereoParams.cameraParams2.flags +cv::CALIB_FIX_K3 + cv::CALIB_FIX_K4 + cv::CALIB_FIX_K5,
+            cv::TermCriteria(cv::TermCriteria::COUNT + cv::TermCriteria::EPS, 30, 1e-6)
 		);
 
 		/***
 		*	保存单目定标结果至本地
 		*/
-		saveCameraParams(stereoParams.cameraParams1, "cameraParams_left.yml");
-		saveCameraParams(stereoParams.cameraParams2, "cameraParams_right.yml");
+
+        saveCameraParams(stereoParams.cameraParams2, "/home/wr/WHR/StereoCamera-master/study/cameraParams_right.yml");
 	}
 
 	stereoParams.imageSize = cornerDatas.imageSize;

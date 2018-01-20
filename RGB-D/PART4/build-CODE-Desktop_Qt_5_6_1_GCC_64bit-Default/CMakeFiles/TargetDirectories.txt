@@ -1,0 +1,10 @@
+/home/wr/WHR/RGB-D/PART3/build-CODE-Desktop_Qt_5_6_1_GCC_64bit-Default/CMakeFiles/edit_cache.dir
+/home/wr/WHR/RGB-D/PART3/build-CODE-Desktop_Qt_5_6_1_GCC_64bit-Default/CMakeFiles/rebuild_cache.dir
+/home/wr/WHR/RGB-D/PART3/build-CODE-Desktop_Qt_5_6_1_GCC_64bit-Default/src/CMakeFiles/edit_cache.dir
+/home/wr/WHR/RGB-D/PART3/build-CODE-Desktop_Qt_5_6_1_GCC_64bit-Default/src/CMakeFiles/rebuild_cache.dir
+/home/wr/WHR/RGB-D/PART3/build-CODE-Desktop_Qt_5_6_1_GCC_64bit-Default/src/CMakeFiles/visualOdometry.dir
+/home/wr/WHR/RGB-D/PART3/build-CODE-Desktop_Qt_5_6_1_GCC_64bit-Default/src/CMakeFiles/joinPointCloud.dir
+/home/wr/WHR/RGB-D/PART3/build-CODE-Desktop_Qt_5_6_1_GCC_64bit-Default/src/CMakeFiles/main.dir
+/home/wr/WHR/RGB-D/PART3/build-CODE-Desktop_Qt_5_6_1_GCC_64bit-Default/src/CMakeFiles/slambase.dir
+/home/wr/WHR/RGB-D/PART3/build-CODE-Desktop_Qt_5_6_1_GCC_64bit-Default/src/CMakeFiles/detectFeatures.dir
+/home/wr/WHR/RGB-D/PART3/build-CODE-Desktop_Qt_5_6_1_GCC_64bit-Default/src/CMakeFiles/generate_pointcloud.dir

@@ -8,7 +8,7 @@ int main()
     cv::Mat image, Extractcorner;
     vector<cv::Point2f> corners;    //用来储存所有角点坐标
     cv::Size board_size = cv::Size(8,11);   //标定板每行，每列角点数
-    image = cv::imread("3.png");
+    image = cv::imread("4.png");
     imshow("2",image);
 
     Extractcorner = image.clone();
@@ -20,7 +20,7 @@ int main()
     threshold(dst,dst,70,255,CV_THRESH_BINARY);
     imshow("1",dst);
       waitKey(0);
-    bool patternfound = cv::findChessboardCorners(dst, board_size, corners, cv::CALIB_CB_FAST_CHECK + cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE);
+    bool patternfound = cv::findChessboardCorners(image, board_size, corners, cv::CALIB_CB_FAST_CHECK + cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE);
     if (!patternfound)
     {
         std::cout << "can not find chessboard corners!" << std::endl;
