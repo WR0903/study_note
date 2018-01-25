@@ -1,1 +1,0 @@
-g++     -g    CMakeFiles/main.dir/main.cpp.o  -o /home/wr/WHR/RGB-D/PART2/CODE/bin/main  -L/home/wr/WHR/RGB-D/PART2/CODE/lib -rdynamic 
