@@ -5,21 +5,17 @@ using namespace cv;
 
 int main()
 {
-    cv::Mat image, Extractcorner;
-    vector<cv::Point2f> corners;    //用来储存所有角点坐标
-    cv::Size board_size = cv::Size(8,11);   //标定板每行，每列角点数
-    image = cv::imread("4.png");
+    Mat image, Extractcorner;
+    vector<Point2f> corners;    //用来储存所有角点坐标
+    Size board_size = Size(8,11);   //标定板每行，每列角点数
+    image = imread("left_2.png");
     imshow("2",image);
-
+waitKey(0);
     Extractcorner = image.clone();
 
-    cv::Mat imageGray,dst;
+    cv::Mat imageGray;
     cv::cvtColor(image, imageGray, CV_RGB2GRAY);
 
-    equalizeHist(imageGray,dst);
-    threshold(dst,dst,70,255,CV_THRESH_BINARY);
-    imshow("1",dst);
-      waitKey(0);
     bool patternfound = cv::findChessboardCorners(image, board_size, corners, cv::CALIB_CB_FAST_CHECK + cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE);
     if (!patternfound)
     {
