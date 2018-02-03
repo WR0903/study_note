@@ -1,0 +1,400 @@
+%YAML:1.0
+calibrationDate: "Wed Jan 31 20:17:27 2018\n"
+# flags:  + fix_principal_point
+flags: -773922796
+imageSize:
+   - 0
+   - 0
+cameraMatrix: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ .Nan, 0., 6.3950000000000000e+02, 0., .Nan,
+       3.5950000000000000e+02, 0., 0., 1. ]
+distortionCoefficients: !!opencv-matrix
+   rows: 1
+   cols: 14
+   dt: d
+   data: [ .Nan, .Nan, .Nan, .Nan, 0., 0., 0., 0., .Nan, .Nan, .Nan,
+       .Nan, 0., 0. ]
+nImages: 38
+rotaionMatrix_0: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_1: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_2: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_3: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_4: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_5: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_6: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_7: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_8: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_9: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_10: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_11: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_12: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_13: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_14: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_15: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_16: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_17: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_18: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_19: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_20: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_21: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_22: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_23: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_24: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_25: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_26: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_27: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_28: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_29: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_30: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_31: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_32: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_33: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_34: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_35: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_36: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+rotaionMatrix_37: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_0: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_1: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_2: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_3: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_4: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_5: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_6: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_7: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_8: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_9: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_10: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_11: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_12: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_13: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_14: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_15: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_16: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_17: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_18: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_19: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_20: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_21: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_22: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_23: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_24: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_25: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_26: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_27: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_28: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_29: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_30: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_31: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_32: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_33: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_34: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_35: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_36: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
+translationMatrix_37: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ .Nan, .Nan, .Nan ]
