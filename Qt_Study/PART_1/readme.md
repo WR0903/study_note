@@ -21,6 +21,9 @@ this->setMinimumSize(393,187);固定最小的窗口大小
 QProcess *process=new QProcess;//新建一个程序进程   
 QString StartProcessString=ui->cmdLineEdit->text();//获取文本编辑器里的内容，即需要启动程序的名字  
 process->start(StartProcessString.trimmed());//开始启动，trimmed()是去掉文本最后的空格  
+* returnPressed()用法  
+QObject::connect(ui->cmdLineEdit,SIGNAL(returnPressed()),this,SLOT(on_submitButton_clicked()));   
+是一个LineEdit信号，当回车按下触发信号。
 * 本例程的效果  
 在文本编辑器里面输入gedit即可打开文本  
 ![](1.png)
