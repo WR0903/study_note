@@ -15,6 +15,8 @@ QVBoxLayout 垂直布局
 Ctrl+H 水平布局,也可以给整个Widget水平布局，这样在窗口大小变化的时候，部件跟着变化  
 Ctrl+L 垂直布局  
 Shift+Alt+R 预览  
+this->setMaximumSize(393,187);固定最大的窗口大小  
+this->setMinimumSize(393,187);固定最小的窗口大小  
 * 本例程的效果  
 ![](1.png)
 

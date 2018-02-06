@@ -6,6 +6,8 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    this->setMaximumSize(393,197);
+    this->setMinimumSize(393,197);
 }
 
 Widget::~Widget()
