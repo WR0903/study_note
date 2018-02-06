@@ -15,7 +15,7 @@ QVBoxLayout 垂直布局
 Ctrl+H 水平布局  
 Ctrl+L 垂直布局  
 Shift+Alt+R 预览  
-* 本例程的效果
+* 本例程的效果  
 ![](1.png)
 
 
