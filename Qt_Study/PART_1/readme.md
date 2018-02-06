@@ -12,7 +12,7 @@ QRadioButton 单选框
 QHBoxLayout 水平布局  
 QVBoxLayout 垂直布局  
 * 常用的快捷键
-Ctrl+H 水平布局  
+Ctrl+H 水平布局,也可以给整个Widget水平布局，这样在窗口大小变化的时候，部件跟着变化  
 Ctrl+L 垂直布局  
 Shift+Alt+R 预览  
 * 本例程的效果  
