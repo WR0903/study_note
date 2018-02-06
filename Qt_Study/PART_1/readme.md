@@ -17,7 +17,12 @@ Ctrl+L 垂直布局
 Shift+Alt+R 预览  
 this->setMaximumSize(393,187);固定最大的窗口大小  
 this->setMinimumSize(393,187);固定最小的窗口大小  
+* QProcess的使用
+QProcess *process=new QProcess;//新建一个程序进程   
+QString StartProcessString=ui->cmdLineEdit->text();//获取文本编辑器里的内容，即需要启动程序的名字  
+process->start(StartProcessString.trimmed());//开始启动，trimmed()是去掉文本最后的空格  
 * 本例程的效果  
+在文本编辑器里面输入gedit即可打开文本
 ![](1.png)
 
 
