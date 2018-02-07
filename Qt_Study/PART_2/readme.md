@@ -10,7 +10,15 @@ ui->valLineEdit->setText(QString::number(result));//把结果在第三个文本�
 ```
 
 
+`ui->comboBox->currentIndex();//返回下拉框的索引值`
+
+```
+QMessageBox::warning(this,"WARNING","Second can't be zero");//警告对话框
+QMessageBox::information(this,"RESULT",QString::number(result));//信息对话框
+```
 
 * 效果展示  
-![](1.png)
+![](1.png)  
+![](2.png)  
+![](3.png)  
 
