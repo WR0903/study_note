@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -34,7 +35,7 @@ public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLineEdit *firstLineEdit;
-    QLabel *label;
+    QComboBox *comboBox;
     QLineEdit *secondLineEdit;
     QLabel *label_2;
     QLineEdit *valLineEdit;
@@ -62,10 +63,10 @@ public:
 
         horizontalLayout->addWidget(firstLineEdit);
 
-        label = new QLabel(centralWidget);
-        label->setObjectName(QStringLiteral("label"));
+        comboBox = new QComboBox(centralWidget);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
 
-        horizontalLayout->addWidget(label);
+        horizontalLayout->addWidget(comboBox);
 
         secondLineEdit = new QLineEdit(centralWidget);
         secondLineEdit->setObjectName(QStringLiteral("secondLineEdit"));
@@ -110,7 +111,13 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        label->setText(QApplication::translate("MainWindow", "+", 0));
+        comboBox->clear();
+        comboBox->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "+", 0)
+         << QApplication::translate("MainWindow", "-", 0)
+         << QApplication::translate("MainWindow", "*", 0)
+         << QApplication::translate("MainWindow", "/", 0)
+        );
         label_2->setText(QApplication::translate("MainWindow", "=", 0));
         calButton->setText(QApplication::translate("MainWindow", "PushButton", 0));
     } // retranslateUi
