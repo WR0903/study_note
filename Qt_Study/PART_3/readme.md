@@ -22,6 +22,10 @@ action的一个常用信号：triggered(bool)；表示这个action被按下。
 `this->setWindowTitle("Untitle.txt");//设置窗口的标题，这里不用ui，我的理解是ui是界面内，this表示这个界面`  
 * 打开一个文件的操作
 ```
+#include <QFile>
+#include <QFileDialog>
+#include <QDir>
+#include <QTextStream>
     QString fileName=QFileDialog::getOpenFileName(this,"Open Files",QDir::currentPath());//用对话框打开当前目录下的文件
     qDebug()<<"The file name is "<<fileName;//调试打印信息，文件的名称
     if(fileName.isEmpty())//如果没有打开
