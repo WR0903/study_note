@@ -43,6 +43,11 @@ public:
     QAction *dateTimeAction;
     QAction *fontAction;
     QAction *colorAction;
+    QAction *updateAction;
+    QAction *aboutSoftWareAction;
+    QAction *helpAction;
+    QAction *aboutWebAction;
+    QAction *aboutQtAction;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QTextEdit *textEdit;
@@ -50,8 +55,8 @@ public:
     QMenu *menu;
     QMenu *menu_E;
     QMenu *menu_G;
-    QMenu *menu_V;
     QMenu *menu_H;
+    QMenu *menu_V;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -59,7 +64,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(400, 300);
+        MainWindow->resize(575, 385);
         newAction = new QAction(MainWindow);
         newAction->setObjectName(QStringLiteral("newAction"));
         QIcon icon;
@@ -108,6 +113,16 @@ public:
         fontAction->setObjectName(QStringLiteral("fontAction"));
         colorAction = new QAction(MainWindow);
         colorAction->setObjectName(QStringLiteral("colorAction"));
+        updateAction = new QAction(MainWindow);
+        updateAction->setObjectName(QStringLiteral("updateAction"));
+        aboutSoftWareAction = new QAction(MainWindow);
+        aboutSoftWareAction->setObjectName(QStringLiteral("aboutSoftWareAction"));
+        helpAction = new QAction(MainWindow);
+        helpAction->setObjectName(QStringLiteral("helpAction"));
+        aboutWebAction = new QAction(MainWindow);
+        aboutWebAction->setObjectName(QStringLiteral("aboutWebAction"));
+        aboutQtAction = new QAction(MainWindow);
+        aboutQtAction->setObjectName(QStringLiteral("aboutQtAction"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -123,17 +138,17 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 400, 31));
+        menuBar->setGeometry(QRect(0, 0, 575, 31));
         menu = new QMenu(menuBar);
         menu->setObjectName(QStringLiteral("menu"));
         menu_E = new QMenu(menuBar);
         menu_E->setObjectName(QStringLiteral("menu_E"));
         menu_G = new QMenu(menuBar);
         menu_G->setObjectName(QStringLiteral("menu_G"));
-        menu_V = new QMenu(menuBar);
-        menu_V->setObjectName(QStringLiteral("menu_V"));
         menu_H = new QMenu(menuBar);
         menu_H->setObjectName(QStringLiteral("menu_H"));
+        menu_V = new QMenu(menuBar);
+        menu_V->setObjectName(QStringLiteral("menu_V"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -145,8 +160,8 @@ public:
         menuBar->addAction(menu->menuAction());
         menuBar->addAction(menu_E->menuAction());
         menuBar->addAction(menu_G->menuAction());
-        menuBar->addAction(menu_V->menuAction());
         menuBar->addAction(menu_H->menuAction());
+        menuBar->addAction(menu_V->menuAction());
         menu->addAction(newAction);
         menu->addAction(openAction);
         menu->addAction(saveAction);
@@ -165,6 +180,11 @@ public:
         menu_E->addAction(dateTimeAction);
         menu_E->addAction(fontAction);
         menu_E->addAction(colorAction);
+        menu_H->addAction(updateAction);
+        menu_H->addAction(aboutSoftWareAction);
+        menu_H->addAction(helpAction);
+        menu_H->addAction(aboutWebAction);
+        menu_H->addAction(aboutQtAction);
         mainToolBar->addAction(newAction);
         mainToolBar->addAction(openAction);
         mainToolBar->addAction(saveAction);
@@ -195,11 +215,16 @@ public:
         dateTimeAction->setText(QApplication::translate("MainWindow", "\346\227\245\346\234\237(&D)", 0));
         fontAction->setText(QApplication::translate("MainWindow", "\345\255\227\344\275\223(&F)", 0));
         colorAction->setText(QApplication::translate("MainWindow", "\351\242\234\350\211\262(&L)", 0));
+        updateAction->setText(QApplication::translate("MainWindow", "\346\233\264\346\226\260(&U)", 0));
+        aboutSoftWareAction->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216\350\275\257\344\273\266(&S)", 0));
+        helpAction->setText(QApplication::translate("MainWindow", "\345\270\256\345\212\251(&E)", 0));
+        aboutWebAction->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216\345\256\230\347\275\221(&W)", 0));
+        aboutQtAction->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216Qt(&Q)", 0));
         menu->setTitle(QApplication::translate("MainWindow", "\346\226\207\344\273\266(&F)", 0));
         menu_E->setTitle(QApplication::translate("MainWindow", "\347\274\226\350\276\221(&E)", 0));
         menu_G->setTitle(QApplication::translate("MainWindow", "\346\240\274\345\274\217(&O)", 0));
-        menu_V->setTitle(QApplication::translate("MainWindow", "\346\237\245\347\234\213(&V)", 0));
         menu_H->setTitle(QApplication::translate("MainWindow", "\345\270\256\345\212\251(&H)", 0));
+        menu_V->setTitle(QApplication::translate("MainWindow", "\346\237\245\347\234\213(&V)", 0));
     } // retranslateUi
 
 };

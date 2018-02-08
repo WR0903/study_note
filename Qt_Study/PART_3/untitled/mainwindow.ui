@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>575</width>
+    <height>385</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>575</width>
      <height>31</height>
     </rect>
    </property>
@@ -66,21 +66,26 @@
      <string>格式(&amp;O)</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menu_H">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="updateAction"/>
+    <addaction name="aboutSoftWareAction"/>
+    <addaction name="helpAction"/>
+    <addaction name="aboutWebAction"/>
+    <addaction name="aboutQtAction"/>
+   </widget>
    <widget class="QMenu" name="menu_V">
     <property name="title">
      <string>查看(&amp;V)</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menu_H">
-    <property name="title">
-     <string>帮助(&amp;H)</string>
-    </property>
-   </widget>
    <addaction name="menu"/>
    <addaction name="menu_E"/>
    <addaction name="menu_G"/>
-   <addaction name="menu_V"/>
    <addaction name="menu_H"/>
+   <addaction name="menu_V"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -194,6 +199,31 @@
   <action name="colorAction">
    <property name="text">
     <string>颜色(&amp;L)</string>
+   </property>
+  </action>
+  <action name="updateAction">
+   <property name="text">
+    <string>更新(&amp;U)</string>
+   </property>
+  </action>
+  <action name="aboutSoftWareAction">
+   <property name="text">
+    <string>关于软件(&amp;S)</string>
+   </property>
+  </action>
+  <action name="helpAction">
+   <property name="text">
+    <string>帮助(&amp;E)</string>
+   </property>
+  </action>
+  <action name="aboutWebAction">
+   <property name="text">
+    <string>关于官网(&amp;W)</string>
+   </property>
+  </action>
+  <action name="aboutQtAction">
+   <property name="text">
+    <string>关于Qt(&amp;Q)</string>
    </property>
   </action>
  </widget>

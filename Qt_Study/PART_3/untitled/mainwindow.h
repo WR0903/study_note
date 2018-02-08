@@ -13,7 +13,9 @@
 #include <QColor>
 #include <QColorDialog>
 #include <QDateTime>
-
+#include <QUrl>//打开网站
+#include <QDesktopServices>//桌面服务的类
+#include <about.h>
 
 
 namespace Ui {
@@ -40,6 +42,8 @@ private slots:
     void setFontSlot();
     void setColorSlot();
     void currentTimeSlot();
+    void aboutWebsiteSlot();
+    void aboutSoftwareSlot();
 };
 
 #endif // MAINWINDOW_H

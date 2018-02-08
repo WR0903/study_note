@@ -49,12 +49,16 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../untitled/main.cpp \
-		../untitled/mainwindow.cpp qrc_res.cpp \
-		moc_mainwindow.cpp
+		../untitled/mainwindow.cpp \
+		../untitled/about.cpp qrc_res.cpp \
+		moc_mainwindow.cpp \
+		moc_about.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		about.o \
 		qrc_res.o \
-		moc_mainwindow.o
+		moc_mainwindow.o \
+		moc_about.o
 DIST          = ../../../../soft/qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../soft/qt/5.6/gcc_64/mkspecs/common/unix.conf \
 		../../../../soft/qt/5.6/gcc_64/mkspecs/common/linux.conf \
@@ -190,8 +194,10 @@ DIST          = ../../../../soft/qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../soft/qt/5.6/gcc_64/mkspecs/features/exceptions.prf \
 		../../../../soft/qt/5.6/gcc_64/mkspecs/features/yacc.prf \
 		../../../../soft/qt/5.6/gcc_64/mkspecs/features/lex.prf \
-		../untitled/untitled.pro ../untitled/mainwindow.h ../untitled/main.cpp \
-		../untitled/mainwindow.cpp
+		../untitled/untitled.pro ../untitled/mainwindow.h \
+		../untitled/about.h ../untitled/main.cpp \
+		../untitled/mainwindow.cpp \
+		../untitled/about.cpp
 QMAKE_TARGET  = untitled
 DESTDIR       = 
 TARGET        = untitled
@@ -200,7 +206,7 @@ TARGET        = untitled
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_about.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../untitled/untitled.pro ../../../../soft/qt/5.6/gcc_64/mkspecs/linux-g++/qmake.conf ../../../../soft/qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
@@ -499,9 +505,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../untitled/res.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../untitled/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../untitled/main.cpp ../untitled/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../untitled/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../untitled/mainwindow.h ../untitled/about.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../untitled/main.cpp ../untitled/mainwindow.cpp ../untitled/about.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../untitled/mainwindow.ui ../untitled/about.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -538,9 +544,9 @@ qrc_res.cpp: ../untitled/res.qrc \
 		../untitled/image/7.png
 	/home/wr/soft/qt/5.6/gcc_64/bin/rcc -name res ../untitled/res.qrc -o qrc_res.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_about.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_about.cpp
 moc_mainwindow.cpp: ../../../../soft/qt/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qwidget.h \
@@ -667,16 +673,131 @@ moc_mainwindow.cpp: ../../../../soft/qt/5.6/gcc_64/include/QtWidgets/QMainWindow
 		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qcolordialog.h \
 		../../../../soft/qt/5.6/gcc_64/include/QtCore/QDateTime \
 		../../../../soft/qt/5.6/gcc_64/include/QtCore/qdatetime.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/QUrl \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/QDesktopServices \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qdesktopservices.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstandardpaths.h \
 		../untitled/mainwindow.h
 	/home/wr/soft/qt/5.6/gcc_64/bin/moc $(DEFINES) -I/home/wr/soft/qt/5.6/gcc_64/mkspecs/linux-g++ -I/home/wr/WHR/Qt_Study/PART_3/untitled -I/home/wr/soft/qt/5.6/gcc_64/include -I/home/wr/soft/qt/5.6/gcc_64/include/QtWidgets -I/home/wr/soft/qt/5.6/gcc_64/include/QtGui -I/home/wr/soft/qt/5.6/gcc_64/include/QtCore -I. ../untitled/mainwindow.h -o moc_mainwindow.cpp
 
+moc_about.cpp: ../../../../soft/qt/5.6/gcc_64/include/QtWidgets/QDialog \
+		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qglobal.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qconfig.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qfeatures.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qisenum.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qlogging.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qflags.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qmutex.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qnumeric.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qnamespace.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qobject.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstring.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qchar.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qbytearray.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qrefcount.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qarraydata.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qlist.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qiterator.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qpair.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstringlist.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qregexp.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qmetatype.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qmargins.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qrect.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qsize.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qpoint.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpalette.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qcolor.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qrgb.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qrgba64.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qbrush.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qvector.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qmatrix.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpolygon.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qregion.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qdatastream.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qiodevice.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qline.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qtransform.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpainterpath.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qimage.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpixmap.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qshareddata.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qhash.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qfont.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qcursor.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qevent.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qvariant.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qmap.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qdebug.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qtextstream.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qlocale.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qset.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qurl.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qurlquery.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qfile.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qvector2d.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qtouchdevice.h \
+		../untitled/about.h
+	/home/wr/soft/qt/5.6/gcc_64/bin/moc $(DEFINES) -I/home/wr/soft/qt/5.6/gcc_64/mkspecs/linux-g++ -I/home/wr/WHR/Qt_Study/PART_3/untitled -I/home/wr/soft/qt/5.6/gcc_64/include -I/home/wr/soft/qt/5.6/gcc_64/include/QtWidgets -I/home/wr/soft/qt/5.6/gcc_64/include/QtGui -I/home/wr/soft/qt/5.6/gcc_64/include/QtCore -I. ../untitled/about.h -o moc_about.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_about.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_about.h
 ui_mainwindow.h: ../untitled/mainwindow.ui
 	/home/wr/soft/qt/5.6/gcc_64/bin/uic ../untitled/mainwindow.ui -o ui_mainwindow.h
+
+ui_about.h: ../untitled/about.ui
+	/home/wr/soft/qt/5.6/gcc_64/bin/uic ../untitled/about.ui -o ui_about.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -815,6 +936,10 @@ main.o: ../untitled/main.cpp ../untitled/mainwindow.h \
 		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qcolordialog.h \
 		../../../../soft/qt/5.6/gcc_64/include/QtCore/QDateTime \
 		../../../../soft/qt/5.6/gcc_64/include/QtCore/qdatetime.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/QUrl \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/QDesktopServices \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qdesktopservices.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstandardpaths.h \
 		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/QApplication \
 		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qapplication.h \
 		../../../../soft/qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
@@ -951,6 +1076,10 @@ mainwindow.o: ../untitled/mainwindow.cpp ../untitled/mainwindow.h \
 		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qcolordialog.h \
 		../../../../soft/qt/5.6/gcc_64/include/QtCore/QDateTime \
 		../../../../soft/qt/5.6/gcc_64/include/QtCore/qdatetime.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/QUrl \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/QDesktopServices \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qdesktopservices.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstandardpaths.h \
 		ui_mainwindow.h \
 		../../../../soft/qt/5.6/gcc_64/include/QtCore/QVariant \
 		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/QAction \
@@ -1005,11 +1134,123 @@ mainwindow.o: ../untitled/mainwindow.cpp ../untitled/mainwindow.h \
 		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../untitled/mainwindow.cpp
 
+about.o: ../untitled/about.cpp ../untitled/about.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/QDialog \
+		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qglobal.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qconfig.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qfeatures.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qisenum.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qlogging.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qflags.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qmutex.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qnumeric.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qnamespace.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qobject.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstring.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qchar.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qbytearray.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qrefcount.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qarraydata.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qlist.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qiterator.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qpair.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstringlist.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qregexp.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qmetatype.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qmargins.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qrect.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qsize.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qpoint.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpalette.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qcolor.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qrgb.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qrgba64.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qbrush.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qvector.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qmatrix.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpolygon.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qregion.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qdatastream.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qiodevice.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qline.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qtransform.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpainterpath.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qimage.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qpixmap.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qshareddata.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qhash.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qfont.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qcursor.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qevent.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qvariant.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qmap.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qdebug.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qtextstream.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qlocale.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qset.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qurl.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qurlquery.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qfile.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qvector2d.h \
+		../../../../soft/qt/5.6/gcc_64/include/QtGui/qtouchdevice.h \
+		ui_about.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o about.o ../untitled/about.cpp
+
 qrc_res.o: qrc_res.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_res.o qrc_res.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_about.o: moc_about.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_about.o moc_about.cpp
 
 ####### Install
 

@@ -22,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->fontAction,SIGNAL(triggered(bool)),this,SLOT(setFontSlot()));
     QObject::connect(ui->colorAction,SIGNAL(triggered(bool)),this,SLOT(setColorSlot()));
     QObject::connect(ui->dateTimeAction,SIGNAL(triggered(bool)),this,SLOT(currentTimeSlot()));
+    QObject::connect(ui->aboutQtAction,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
+    QObject::connect(ui->aboutWebAction,SIGNAL(triggered(bool)),this,SLOT(aboutWebsiteSlot()));
+    QObject::connect(ui->aboutSoftWareAction,SIGNAL(triggered(bool)),this,SLOT(aboutSoftwareSlot()));
 
 }
 
@@ -146,4 +149,13 @@ void MainWindow::currentTimeSlot()
     QDateTime current=QDateTime::currentDateTime();//获得当前的时间
     QString time=current.toString("yyyy-M-d hh:mm:ss");//转换成string，按照一定的格式
     ui->textEdit->append(time);//在末尾追加
+}
+void MainWindow::aboutWebsiteSlot()//使用的是默认浏览器
+{
+    QDesktopServices::openUrl(QUrl("http://www.baidu.com"));
+}
+void MainWindow::aboutSoftwareSlot()//弹出子对话框
+{
+    about *dialog=new about;
+    dialog->show();
 }
