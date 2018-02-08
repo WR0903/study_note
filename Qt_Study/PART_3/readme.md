@@ -144,6 +144,15 @@ QObject::connect(ui->pasteAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(paste
 QObject::connect(ui->cutAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(cut()));
 QObject::connect(ui->selectAllAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(selectAll()));
 ```
+* 获得时间的方法
+```
+void MainWindow::currentTimeSlot()
+{
+    QDateTime current=QDateTime::currentDateTime();//获得当前的时间
+    QString time=current.toString("yyyy-M-d hh:mm:ss");//转换成string，按照一定的格式
+    ui->textEdit->append(time);//在末尾追加
+}
+```
 * 效果展示  
 ![](1.png)  
 

@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->selectAllAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(selectAll()));
     QObject::connect(ui->fontAction,SIGNAL(triggered(bool)),this,SLOT(setFontSlot()));
     QObject::connect(ui->colorAction,SIGNAL(triggered(bool)),this,SLOT(setColorSlot()));
-
+    QObject::connect(ui->dateTimeAction,SIGNAL(triggered(bool)),this,SLOT(currentTimeSlot()));
 
 }
 
@@ -140,4 +140,10 @@ void MainWindow::setColorSlot()
         QMessageBox::information(this,"Error","Error set color");
         return;
     }
+}
+void MainWindow::currentTimeSlot()
+{
+    QDateTime current=QDateTime::currentDateTime();//获得当前的时间
+    QString time=current.toString("yyyy-M-d hh:mm:ss");//转换成string，按照一定的格式
+    ui->textEdit->append(time);//在末尾追加
 }

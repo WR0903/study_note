@@ -39,6 +39,7 @@ private slots:
     void saveAsFileSlot();
     void setFontSlot();
     void setColorSlot();
+    void currentTimeSlot();
 };
 
 #endif // MAINWINDOW_H
