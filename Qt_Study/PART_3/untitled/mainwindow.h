@@ -20,12 +20,16 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    //QString
 
 private:
     Ui::MainWindow *ui;
+    QString saveFileName;
 private slots:
     void newFileSlot();
     void openFileSlot();
+    void saveFileSlot();
+    void saveAsFileSlot();
 };
 
 #endif // MAINWINDOW_H

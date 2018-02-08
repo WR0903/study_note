@@ -48,6 +48,57 @@ action的一个常用信号：triggered(bool)；表示这个action被按下。
         QMessageBox::information(this,"Error","file open error"+file->errorString());
     }
 ```
+* 保存文件的操作
+```
+void MainWindow::saveFileSlot()
+{
+    if(saveFileName.isEmpty())
+    {
+        this->saveAsFileSlot();
+    }
+    QFile *file=new QFile;
+    file->setFileName(saveFileName);
+    bool ok=file->open(QIODevice::WriteOnly);
+    if(ok)
+    {
+        QTextStream out(file);//使用out方法将文件和文件流相关联
+        out<<ui->textEdit->toPlainText();//取出纯文本
+        file->close();
+        this->setWindowTitle(saveFileName);
+        delete file;
+    }
+    else
+    {
+        QMessageBox::information(this,"Error","save file error"+file->errorString());
+        return;
+    }
+}
+void MainWindow::saveAsFileSlot()
+{
+    saveFileName=QFileDialog::getSaveFileName(this,"save file",QDir::currentPath());//弹出对话框，选择保存文件的位置和名字
+    if(saveFileName.isEmpty())
+    {
+        QMessageBox::information(this,"Error","Please select a file;");
+        return;
+    }
+    QFile *file=new QFile;//新建文件
+    file->setFileName(saveFileName);//设置文件名字
+    bool ok=file->open(QIODevice::WriteOnly);//open方法打开文件，并设置权限为只写
+    if(ok)
+    {
+        QTextStream out(file);//使用out方法将文件和文件流相关联
+        out<<ui->textEdit->toPlainText();//取出纯文本
+        file->close();
+        this->setWindowTitle(saveFileName);
+        delete file;
+    }
+    else
+    {
+        QMessageBox::information(this,"Error","save file error"+file->errorString());
+        return;
+    }
+}
+```
 * 效果展示  
 ![](1.png)  
 

@@ -45,6 +45,15 @@
     <property name="title">
      <string>编辑(&amp;E)</string>
     </property>
+    <addaction name="undoAction"/>
+    <addaction name="redoAction"/>
+    <addaction name="separator"/>
+    <addaction name="copyAction"/>
+    <addaction name="cutAction"/>
+    <addaction name="pasteAction"/>
+    <addaction name="selectAllAction"/>
+    <addaction name="separator"/>
+    <addaction name="dateTimeAction"/>
    </widget>
    <widget class="QMenu" name="menu_G">
     <property name="title">
@@ -104,6 +113,41 @@
   <action name="exitAction">
    <property name="text">
     <string>退出</string>
+   </property>
+  </action>
+  <action name="undoAction">
+   <property name="text">
+    <string>撤销(&amp;U)</string>
+   </property>
+  </action>
+  <action name="redoAction">
+   <property name="text">
+    <string>重做(&amp;R)</string>
+   </property>
+  </action>
+  <action name="copyAction">
+   <property name="text">
+    <string>复制(&amp;C)</string>
+   </property>
+  </action>
+  <action name="cutAction">
+   <property name="text">
+    <string>剪切(&amp;X)</string>
+   </property>
+  </action>
+  <action name="pasteAction">
+   <property name="text">
+    <string>粘贴(&amp;V)</string>
+   </property>
+  </action>
+  <action name="selectAllAction">
+   <property name="text">
+    <string>全选(&amp;A)</string>
+   </property>
+  </action>
+  <action name="dateTimeAction">
+   <property name="text">
+    <string>日期(&amp;D)</string>
    </property>
   </action>
  </widget>
