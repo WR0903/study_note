@@ -54,6 +54,8 @@
     <addaction name="selectAllAction"/>
     <addaction name="separator"/>
     <addaction name="dateTimeAction"/>
+    <addaction name="fontAction"/>
+    <addaction name="colorAction"/>
    </widget>
    <widget class="QMenu" name="menu_G">
     <property name="title">
@@ -148,6 +150,16 @@
   <action name="dateTimeAction">
    <property name="text">
     <string>日期(&amp;D)</string>
+   </property>
+  </action>
+  <action name="fontAction">
+   <property name="text">
+    <string>字体(&amp;F)</string>
+   </property>
+  </action>
+  <action name="colorAction">
+   <property name="text">
+    <string>颜色(&amp;L)</string>
    </property>
   </action>
  </widget>

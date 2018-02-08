@@ -8,6 +8,13 @@
 #include <QFileDialog>
 #include <QDir>
 #include <QTextStream>
+#include <QFont>
+#include <QFontDialog>
+#include <QColor>
+#include <QColorDialog>
+#include <QDateTime>
+
+
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +37,8 @@ private slots:
     void openFileSlot();
     void saveFileSlot();
     void saveAsFileSlot();
+    void setFontSlot();
+    void setColorSlot();
 };
 
 #endif // MAINWINDOW_H

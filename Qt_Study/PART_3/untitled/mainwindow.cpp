@@ -12,6 +12,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->saveAsAction,SIGNAL(triggered(bool)),this,SLOT(saveAsFileSlot()));
     QObject::connect(ui->saveAction,SIGNAL(triggered(bool)),this,SLOT(saveFileSlot()));
     QObject::connect(ui->exitAction,SIGNAL(triggered(bool)),this,SLOT(close()));
+
+    QObject::connect(ui->undoAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(undo()));
+    QObject::connect(ui->redoAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(redo()));
+    QObject::connect(ui->copyAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(copy()));
+    QObject::connect(ui->pasteAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(paste()));
+    QObject::connect(ui->cutAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(cut()));
+    QObject::connect(ui->selectAllAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(selectAll()));
+    QObject::connect(ui->fontAction,SIGNAL(triggered(bool)),this,SLOT(setFontSlot()));
+    QObject::connect(ui->colorAction,SIGNAL(triggered(bool)),this,SLOT(setColorSlot()));
+
+
 }
 
 MainWindow::~MainWindow()
@@ -100,6 +111,33 @@ void MainWindow::saveAsFileSlot()
     else
     {
         QMessageBox::information(this,"Error","save file error"+file->errorString());
+        return;
+    }
+}
+void MainWindow::setFontSlot()
+{
+    bool ok;
+    QFont font=QFontDialog::getFont(&ok,this);
+    if(ok)
+    {
+        ui->textEdit->setFont(font);
+    }
+    else
+    {
+        QMessageBox::information(this,"Error","please select a font;");
+        return;
+    }
+}
+void MainWindow::setColorSlot()
+{
+    QColor color=QColorDialog::getColor(Qt::red,this);
+    if(color.isValid())
+    {
+        ui->textEdit->setTextColor(color);
+    }
+    else
+    {
+        QMessageBox::information(this,"Error","Error set color");
         return;
     }
 }

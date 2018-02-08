@@ -99,6 +99,51 @@ void MainWindow::saveAsFileSlot()
     }
 }
 ```
+* 设置颜色和字体
+```
+#include <QFont>
+#include <QFontDialog>
+#include <QColor>
+#include <QColorDialog>
+#include <QDateTime>
+void MainWindow::setFontSlot()
+{
+    bool ok;
+    QFont font=QFontDialog::getFont(&ok,this);//从字体对话框获取字体
+    if(ok)//ok判断获取是否成功
+    {
+        ui->textEdit->setFont(font);//对文本编辑器里选中的字体进行设置
+    }
+    else
+    {
+        QMessageBox::information(this,"Error","please select a font;");
+        return;
+    }
+}
+void MainWindow::setColorSlot()
+{
+    QColor color=QColorDialog::getColor(Qt::red,this);
+    if(color.isValid())
+    {
+        ui->textEdit->setTextColor(color);
+    }
+    else
+    {
+        QMessageBox::information(this,"Error","Error set color");
+        return;
+    }
+}
+
+```
+* 关于编辑常用的槽函数
+```
+QObject::connect(ui->undoAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(undo()));
+QObject::connect(ui->redoAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(redo()));
+QObject::connect(ui->copyAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(copy()));
+QObject::connect(ui->pasteAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(paste()));
+QObject::connect(ui->cutAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(cut()));
+QObject::connect(ui->selectAllAction,SIGNAL(triggered(bool)),ui->textEdit,SLOT(selectAll()));
+```
 * 效果展示  
 ![](1.png)  
 
