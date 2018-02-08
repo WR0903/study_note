@@ -20,7 +20,30 @@ QMessageBox::information(this,"RESULT",QString::number(result));//信息对话�
 `qDebug()<<"The current file is modified.";//Qt自带的调试打印，需要添加#include <QtDebug>`  
 action的一个常用信号：triggered(bool)；表示这个action被按下。  
 `this->setWindowTitle("Untitle.txt");//设置窗口的标题，这里不用ui，我的理解是ui是界面内，this表示这个界面`  
-
+* 打开一个文件的操作
+```
+    QString fileName=QFileDialog::getOpenFileName(this,"Open Files",QDir::currentPath());//用对话框打开当前目录下的文件
+    qDebug()<<"The file name is "<<fileName;//调试打印信息，文件的名称
+    if(fileName.isEmpty())//如果没有打开
+    {
+        QMessageBox::information(this,"Error information","Please select a exit file;");//用QMessageBox对话框打印错误信息
+        return;
+    }
+    QFile *file=new QFile;//新建一个file
+    file->setFileName(fileName);//设置文件名称
+    bool ok =file->open(QIODevice::ReadOnly);//open方法打开file，并设置权限为readonly
+    if(ok)
+    {
+        QTextStream in(file);//文件与文本流相关联
+        ui->textEdit->setText(in.readAll());//读出当前文本的所有的内容
+        file->close();//关掉file
+        delete file;//释放file
+    }
+    else
+    {
+        QMessageBox::information(this,"Error","file open error"+file->errorString());
+    }
+```
 * 效果展示  
 ![](1.png)  
 
