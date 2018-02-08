@@ -62,10 +62,19 @@ public:
         MainWindow->resize(400, 300);
         newAction = new QAction(MainWindow);
         newAction->setObjectName(QStringLiteral("newAction"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/new/prefix1/image/4.png"), QSize(), QIcon::Normal, QIcon::Off);
+        newAction->setIcon(icon);
         openAction = new QAction(MainWindow);
         openAction->setObjectName(QStringLiteral("openAction"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/new/prefix1/image/5.png"), QSize(), QIcon::Normal, QIcon::Off);
+        openAction->setIcon(icon1);
         saveAction = new QAction(MainWindow);
         saveAction->setObjectName(QStringLiteral("saveAction"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/new/prefix1/image/1.png"), QSize(), QIcon::Normal, QIcon::Off);
+        saveAction->setIcon(icon2);
         saveAsAction = new QAction(MainWindow);
         saveAsAction->setObjectName(QStringLiteral("saveAsAction"));
         printAction = new QAction(MainWindow);
@@ -78,10 +87,19 @@ public:
         redoAction->setObjectName(QStringLiteral("redoAction"));
         copyAction = new QAction(MainWindow);
         copyAction->setObjectName(QStringLiteral("copyAction"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/new/prefix1/image/2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        copyAction->setIcon(icon3);
         cutAction = new QAction(MainWindow);
         cutAction->setObjectName(QStringLiteral("cutAction"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/new/prefix1/image/3.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cutAction->setIcon(icon4);
         pasteAction = new QAction(MainWindow);
         pasteAction->setObjectName(QStringLiteral("pasteAction"));
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/new/prefix1/image/6.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pasteAction->setIcon(icon5);
         selectAllAction = new QAction(MainWindow);
         selectAllAction->setObjectName(QStringLiteral("selectAllAction"));
         dateTimeAction = new QAction(MainWindow);
@@ -98,6 +116,7 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         textEdit = new QTextEdit(centralWidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setStyleSheet(QStringLiteral("border-image: url(:/new/prefix1/image/ubuntu.png);"));
 
         verticalLayout->addWidget(textEdit);
 
@@ -146,6 +165,12 @@ public:
         menu_E->addAction(dateTimeAction);
         menu_E->addAction(fontAction);
         menu_E->addAction(colorAction);
+        mainToolBar->addAction(newAction);
+        mainToolBar->addAction(openAction);
+        mainToolBar->addAction(saveAction);
+        mainToolBar->addAction(copyAction);
+        mainToolBar->addAction(cutAction);
+        mainToolBar->addAction(pasteAction);
 
         retranslateUi(MainWindow);
 

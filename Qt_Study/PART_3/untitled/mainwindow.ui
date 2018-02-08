@@ -16,7 +16,11 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTextEdit" name="textEdit"/>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/new/prefix1/image/ubuntu.png);</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -85,19 +89,37 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="newAction"/>
+   <addaction name="openAction"/>
+   <addaction name="saveAction"/>
+   <addaction name="copyAction"/>
+   <addaction name="cutAction"/>
+   <addaction name="pasteAction"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="newAction">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/new/prefix1/image/4.png</normaloff>:/new/prefix1/image/4.png</iconset>
+   </property>
    <property name="text">
     <string>新建(&amp;N)</string>
    </property>
   </action>
   <action name="openAction">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/new/prefix1/image/5.png</normaloff>:/new/prefix1/image/5.png</iconset>
+   </property>
    <property name="text">
     <string>打开(&amp;O)</string>
    </property>
   </action>
   <action name="saveAction">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/new/prefix1/image/1.png</normaloff>:/new/prefix1/image/1.png</iconset>
+   </property>
    <property name="text">
     <string>保存(&amp;S)</string>
    </property>
@@ -128,16 +150,28 @@
    </property>
   </action>
   <action name="copyAction">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/new/prefix1/image/2.png</normaloff>:/new/prefix1/image/2.png</iconset>
+   </property>
    <property name="text">
     <string>复制(&amp;C)</string>
    </property>
   </action>
   <action name="cutAction">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/new/prefix1/image/3.png</normaloff>:/new/prefix1/image/3.png</iconset>
+   </property>
    <property name="text">
     <string>剪切(&amp;X)</string>
    </property>
   </action>
   <action name="pasteAction">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/new/prefix1/image/6.png</normaloff>:/new/prefix1/image/6.png</iconset>
+   </property>
    <property name="text">
     <string>粘贴(&amp;V)</string>
    </property>
@@ -164,6 +198,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>
