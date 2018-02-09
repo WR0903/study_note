@@ -16,6 +16,7 @@
 #include <QUrl>//打开网站
 #include <QDesktopServices>//桌面服务的类
 #include <about.h>
+#include <QCloseEvent>//程序关闭，所有的成员函数都受到保护
 
 
 namespace Ui {
@@ -30,6 +31,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     //QString
+protected:
+    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::MainWindow *ui;

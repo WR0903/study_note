@@ -153,6 +153,49 @@ void MainWindow::currentTimeSlot()
     ui->textEdit->append(time);//在末尾追加
 }
 ```
+* 关闭事件处理
+```
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if(ui->textEdit->document()->isModified())
+    {
+
+  QMessageBox msgBox;
+  msgBox.setText("The document has been modified.");
+  //显示的文本
+  msgBox.setInformativeText("Do you want to save your changes?");
+  //需要你做的操作
+  msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+  //三个按钮
+  msgBox.setDefaultButton(QMessageBox::Save);
+  //默认的按钮
+  int ret = msgBox.exec();//对话框关闭的时候返回你操作的结果
+  switch (ret) {
+      case QMessageBox::Save:
+          // Save was clicked
+          this->saveFileSlot();
+          break;
+      case QMessageBox::Discard:
+          // Don't Save was clicked
+          event->accept();
+          break;
+      case QMessageBox::Cancel:
+          // Cancel was clicked
+          event->ignore();
+          break;
+      default:
+          // should never be reached
+          event->ignore();
+          break;
+    }
+
+    }
+    else
+    {
+        event->accept();
+    }
+}
+```
 * 效果展示  
 ![](1.png)  
 
