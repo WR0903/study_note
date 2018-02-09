@@ -225,7 +225,32 @@ void MainWindow::deleteAllItemSlot()
         delete item;
     }
 }
+void MainWindow::showDirSlot()
+{
+    QStringList fileNames=QFileDialog::getOpenFileNames(this,"open file",QDir::homePath());//可以获得多个文件
+    if(fileNames.size()==0)//判断是否为空
+    {
+        QMessageBox::information(this,"Error","no file");
+    }
+    for(int i=0;i<fileNames.size();i++)
+    {
+        QListWidgetItem *item=new QListWidgetItem;
+        item->setText(fileNames.at(i));
+        ui->listWidget->addItem(item);
+    }
+}
+void MainWindow::singalSlot(QListWidgetItem *item)
+{
+    QMessageBox::information(this,"information","signal"+item->text());
+}
+void MainWindow::doubleSlot(QListWidgetItem *item)
+{
+    QMessageBox::information(this,"information","double"+item->text());
+}
+QObject::connect(ui->listWidget,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(singalSlot(QListWidgetItem *)));//项目单击
+QObject::connect(ui->listWidget,SIGNAL(itemDoubleClicked(QListWidgetItem*)),this,SLOT(doubleSlot(QListWidgetItem *)));//项目双击
 ```
+
 * 效果展示  
 ![](1.png)  
 

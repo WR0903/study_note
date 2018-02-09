@@ -66,6 +66,13 @@
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="showDirButton">
+      <property name="text">
+       <string>显示目录</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">

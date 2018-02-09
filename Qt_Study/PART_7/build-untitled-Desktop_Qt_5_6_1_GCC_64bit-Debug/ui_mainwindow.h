@@ -39,6 +39,7 @@ public:
     QPushButton *addButton;
     QPushButton *deleteButton;
     QPushButton *deleteAllButton;
+    QPushButton *showDirButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -94,6 +95,11 @@ public:
 
         verticalLayout_2->addWidget(deleteAllButton);
 
+        showDirButton = new QPushButton(centralWidget);
+        showDirButton->setObjectName(QStringLiteral("showDirButton"));
+
+        verticalLayout_2->addWidget(showDirButton);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -128,6 +134,7 @@ public:
         addButton->setText(QApplication::translate("MainWindow", "\346\267\273\345\212\240", 0));
         deleteButton->setText(QApplication::translate("MainWindow", "\345\210\240\351\231\244", 0));
         deleteAllButton->setText(QApplication::translate("MainWindow", "\345\210\240\351\231\244\346\211\200\346\234\211", 0));
+        showDirButton->setText(QApplication::translate("MainWindow", "\346\230\276\347\244\272\347\233\256\345\275\225", 0));
     } // retranslateUi
 
 };
