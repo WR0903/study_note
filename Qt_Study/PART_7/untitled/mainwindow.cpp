@@ -51,8 +51,8 @@ void MainWindow::deleteAllItemSlot()
 }
 void MainWindow::showDirSlot()
 {
-    QStringList fileNames=QFileDialog::getOpenFileNames(this,"open file",QDir::homePath());
-    if(fileNames.size()==0)
+    QStringList fileNames=QFileDialog::getOpenFileNames(this,"open file",QDir::homePath());//可以获得多个文件
+    if(fileNames.size()==0)//判断是否为空
     {
         QMessageBox::information(this,"Error","no file");
     }
