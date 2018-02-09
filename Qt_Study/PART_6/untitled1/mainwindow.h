@@ -2,6 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFileDialog>
+#include <QFile>
+#include <QDir>
+#include <QtDebug>
+#include <QMessageBox>
+#include <QDateTime>
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +23,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+private slots:
+    void getFileInfoSlot();
 };
 
 #endif // MAINWINDOW_H
