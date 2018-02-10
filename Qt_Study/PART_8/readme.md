@@ -196,7 +196,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
 }
 ```
-* 截图的实现
+* 截图的实现,并保存图片
 ```
 void MainWindow::on_pushButton_clicked()
 {
@@ -217,8 +217,59 @@ void MainWindow::shutScreenSlot()
 {
     this->pixmap=QPixmap::grabWindow(QApplication::desktop()->winId());//获取当前屏幕的ID
     ui->label->setPixmap(this->pixmap.scaled(ui->label->size()));//在label上显示出来
+    QClipboard *clipboard = QApplication::clipboard();//新建剪切板
+    //QPixmap originalPixmap = clipboard->pixmap();
+
+    clipboard->setPixmap(this->pixmap);//把截得的图片放在剪切板上
     this->show();//屏幕显示
     this->timer->stop();//定时器停止
+}
+void MainWindow::savePictureSlot()
+{
+    QString fileName=QFileDialog::getSaveFileName(this,"save file",QDesktopServices::storageLocation(QDesktopServices::PicturesLocation));
+
+    this->pixmap.save(fileName);//保存图片
+}
+```
+* 两个程序之间通过剪切板通信
+上面的截图的实现是发送端,一下是接收端  
+```
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    this->timer=new QTimer;//新建定时器
+    QObject::connect(this->timer,SIGNAL(timeout()),this,SLOT(pixSlot()));
+    this->timer->start(200);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+void MainWindow::pixSlot()
+{
+    QClipboard *clipboard = QApplication::clipboard();//新建剪切板
+    QPixmap originalPixmap = clipboard->pixmap();//从剪切板取出图片
+    ui->label->setPixmap(originalPixmap.scaled(ui->label->size()));//播放
+}
+
+```
+* 右击菜单
+```
+void MainWindow::contextMenuEvent(QContextMenuEvent *Event)
+{
+    QMenu *menu=new QMenu(this);//右击出现菜单
+    QAction *action=new QAction(this);//菜单的每一项
+    QAction *process=new QAction(this);
+    action->setText("save as");//每一项的名称
+    process->setText("process");
+    QObject::connect(process,SIGNAL(triggered(bool)),this,SLOT(startGeditSlot()));
+    QObject::connect(action,SIGNAL(triggered(bool)),this,SLOT(savePictureSlot()));
+    menu->addAction(process);
+    menu->addAction(action);//将该项添加在菜单中
+    menu->exec(QCursor::pos());//菜单启动运行,出现的位置是鼠标的位置
 }
 ```
 * 效果展示  
