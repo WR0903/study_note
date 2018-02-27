@@ -52,6 +52,30 @@ s3.append(s4);
 cout<<s3<<endl;
 ```
 
+* string的查找替换
+```
+string s1="wbm 00 wbm 111 wbm 222 hello";
+int index=s1.find("wbm",3);//位置坐标从０开始,3表示从第三位开始查找
+cout<<"index:"<<index<<endl;
+//求wbm出现的次数　和下标
+int offindex=s1.find("wbm",0);
+while (offindex!=string::npos)
+{
+    cout<<offindex<<endl;
+    offindex=offindex+1;
+    offindex=s1.find("wbm",offindex);
+}
+
+offindex=s1.find("wbm",0);
+while (offindex!=string::npos)
+{
+    cout<<offindex<<endl;
+    s1.replace(offindex,3,"WBM");//替换
+    offindex=offindex+1;
+    offindex=s1.find("wbm",offindex);
+}
+cout<<s1<<endl;
+```
 
 
 
