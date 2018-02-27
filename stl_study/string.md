@@ -77,6 +77,22 @@ while (offindex!=string::npos)
 cout<<s1<<endl;
 ```
 
+* string的删除和插入
+```
+string s1="hello hello1 hello2 ";
+string::iterator it=find(s1.begin(),s1.end(),'l');
+if(it!=s1.end())
+{
+    s1.erase(it);//删除
+}
+cout<<s1<<endl;
+s1.erase(s1.begin(),s1.end());
+cout<<s1.length()<<endl;
+string s2="sssss";
+s2.insert(3,"AAA");//在哪个位置插入
+cout<<s2<<endl;
+```
+
 
 
 
