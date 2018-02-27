@@ -1,19 +1,19 @@
 # vector
 存放元素的容器
-* 容器的声明和放入元素
+* 容器的声明和放入元素  
 ```
 　vector<int> v1;
  v1.push_back(1);
 ```
-* 容器迭代器
-`vector<int>::iterator it;`
-* 容器的开始和结尾
-`v1.begin();`
-`v1.end();`
-* 算法的计数
-`int num1=count(v1.begin(),v1.end(),3);//计算v1容器中３的个数`
+* 容器迭代器  
+`vector<int>::iterator it;`  
+* 容器的开始和结尾  
+`v1.begin();`  
+`v1.end();`  
+* 算法的计数  
+`int num1=count(v1.begin(),v1.end(),3);//计算v1容器中３的个数`  
 
-* 设计案例
+* 设计案例  
 ```
 #include <iostream>
 
