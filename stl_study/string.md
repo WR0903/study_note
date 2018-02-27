@@ -93,8 +93,12 @@ s2.insert(3,"AAA");//在哪个位置插入
 cout<<s2<<endl;
 ```
 
-
-
+* string大小写的转化
+```
+string s1="AAABBB";
+transform(s1.begin(),s1.end(),s1.begin(),::toupper);//tolower为小写，toupper为大写
+cout<<s1<<endl;
+```
 
 
 
