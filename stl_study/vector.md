@@ -19,6 +19,12 @@ for(vector<int>::reverse_iterator rit = v1.rbegin();rit!=v1.rend();rit++)
 `v1.end();`  
 `v1.front()=10;//获取头部元素`  
 `v1.back()=88;//获取尾部元素`  
+* 容器的插入和删除
+```
+v1.insert(v1.begin(),100);
+v1.insert(v1.end(),200);
+it=v1.erase(it);// 删除，返回下一个指针
+```
 * 算法的计数  
 `int num1=count(v1.begin(),v1.end(),3);//计算v1容器中３的个数`  
 
