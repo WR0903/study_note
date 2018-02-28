@@ -8,11 +8,17 @@ v1.pop_back();
 ```
 * 容器迭代器  
 `vector<int>::iterator it;`  
+```
+for(vector<int>::reverse_iterator rit = v1.rbegin();rit!=v1.rend();rit++)
+{
+    cout<<*rit<<endl;//逆向迭代器
+}
+```
 * 容器的开始和结尾  
 `v1.begin();//指针`  
 `v1.end();`  
-`v1.front()=10;//获取头部元素`
-`v1.back()=88;//获取尾部元素`
+`v1.front()=10;//获取头部元素`  
+`v1.back()=88;//获取尾部元素`  
 * 算法的计数  
 `int num1=count(v1.begin(),v1.end(),3);//计算v1容器中３的个数`  
 
