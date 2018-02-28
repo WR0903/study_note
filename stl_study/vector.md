@@ -1,15 +1,18 @@
 # vector
 存放元素的容器
-* 容器的声明和放入元素  
+* 容器的声明和放入元素以及删除元素  
 ```
-　vector<int> v1;
- v1.push_back(1);
+vector<int> v1;
+v1.push_back(1);
+v1.pop_back();
 ```
 * 容器迭代器  
 `vector<int>::iterator it;`  
 * 容器的开始和结尾  
-`v1.begin();`  
+`v1.begin();//指针`  
 `v1.end();`  
+`v1.front()=10;//获取头部元素`
+`v1.back()=88;//获取尾部元素`
 * 算法的计数  
 `int num1=count(v1.begin(),v1.end(),3);//计算v1容器中３的个数`  
 
