@@ -97,3 +97,60 @@ void set3()
     }
 }
 ```
+* set的查找
+```
+void set4()
+{
+    set<int> set1;
+    for(int i=0;i<10;i++)
+    {
+        set1.insert(i+1);
+    }
+    for(set<int>::iterator it=set1.begin();it!=set1.end();it++)
+    {
+        cout<<*it<<" ";
+    }
+    cout<<endl;
+    set<int>::iterator it0=set1.find(5);//查找＝５的数
+    cout<<*it0<<endl;
+    int num1=set1.count(5);//５的个数
+    cout<<num1<<endl;
+    set1.erase(5);
+    set<int>::iterator it1=set1.lower_bound(5);//>=5
+    cout<<*it1<<endl;
+    set<int>::iterator it2=set1.upper_bound(5);//>5
+    cout<<*it2<<endl;
+    pair<set<int>::iterator,set<int>::iterator>mypair=set1.equal_range(5);
+    set<int>::iterator it3=mypair.first;//>=5
+    cout<<"it3:"<<*it3<<endl;
+    set<int>::iterator it4=mypair.second;//>5
+    cout<<"it4:"<<*it4<<endl;
+}
+```
+* multiset的用法,可以重复输入数据
+```
+void set1()
+{
+    multiset<int> set1;
+    int tmp=0;
+    cout<<"请输入";
+    cin>>tmp;
+    while(tmp!=0)
+    {
+        set1.insert(tmp);
+        cout<<"请输入";
+        cin>>tmp;
+    }
+    for(multiset<int>::iterator it=set1.begin();it!=set1.end();it++)
+    {
+        cout<<*it<<" ";
+    }
+    cout<<endl;
+    while(!set1.empty())
+    {
+        multiset<int>::iterator it=set1.begin();
+        cout<<*it<<endl;
+        set1.erase(it);
+    }
+}
+```
