@@ -1,4 +1,6 @@
 # template
+
+当函数模板和普通函数都符合调用规则的时候，优先使用普通函数
 ```
 #include <iostream>
 
