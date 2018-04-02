@@ -7,4 +7,6 @@ SOURCES += main.cpp
 
 HEADERS += \
     array.h \
-    array.hpp
+    array.hpp \
+    linear.h \
+    linear.hpp

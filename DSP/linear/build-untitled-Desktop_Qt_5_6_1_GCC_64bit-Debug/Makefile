@@ -180,7 +180,9 @@ DIST          = ../../../../soft/qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../soft/qt/5.6/gcc_64/mkspecs/features/yacc.prf \
 		../../../../soft/qt/5.6/gcc_64/mkspecs/features/lex.prf \
 		../untitled/untitled.pro array.h \
-		array.hpp ../untitled/main.cpp
+		array.hpp \
+		linear.h \
+		linear.hpp ../untitled/main.cpp
 QMAKE_TARGET  = untitled
 DESTDIR       = 
 TARGET        = untitled
@@ -496,7 +498,9 @@ compiler_clean:
 ####### Compile
 
 main.o: ../untitled/main.cpp ../untitled/array.hpp \
-		../untitled/array.h
+		../untitled/array.h \
+		../untitled/linear.hpp \
+		../untitled/linear.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../untitled/main.cpp
 
 ####### Install

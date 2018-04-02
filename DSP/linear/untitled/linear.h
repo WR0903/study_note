@@ -1,21 +1,24 @@
-#ifndef ARRAY_H
-#define ARRAY_H
+#ifndef LINEAR_H
+#define LINEAR_H
 
 #include <iostream>
 using namespace std;
 
-#define MAXSIZE 20
-typedef int ElemType;//修改存放数据类型
-typedef struct
-{
-    ElemType data[MAXSIZE];
-    int length;
-}SqList;
 
-class array_list
+typedef int ElemType;//修改存放数据类型
+typedef struct Node
+{
+    ElemType data;
+    struct Node *next;
+}Node;
+typedef struct Node *LinkList;
+
+class linear_list
 {
 public:
-    SqList *L;
+    LinkList LL;
+    int n;
+
 public:
     void InitList();
     bool ListEmpty();
@@ -28,4 +31,5 @@ public:
 };
 
 
-#endif // ARRAY_H
+
+#endif // LINEAR_H

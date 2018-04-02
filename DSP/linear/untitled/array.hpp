@@ -4,45 +4,45 @@
 
 using namespace std;
 
-bool array_list::GetElem(SqList *l,int i,ElemType &e)
+bool array_list::GetElem(int i,ElemType &e)
 {
-    if(l->length==0||i<1||i>l->length)
+    if(L->length==0||i<1||i>L->length)
         return false;
-    e=l->data[i-1];
+    e=L->data[i-1];
     return true;
 }
 
 
 
-void array_list::InitList(SqList* l)
+void array_list::InitList()
 {
-    //l->data[]=0;
-    l->length=1;
-    //l->length=1;
+
+    L->length=1;
+
 }
-bool array_list::ListEmpty(SqList *l)
+bool array_list::ListEmpty()
 {
-    if(l->length==0)
+    if(L->length==0)
         return true;
     else
         return false;
 }
-void array_list::ClearList(SqList* l)
+void array_list::ClearList()
 {
-    while(l->length>0)
+    while(L->length>0)
     {
-        l->data[l->length-1]=0;
-        l->length--;
+        L->data[L->length-1]=0;
+        L->length--;
     }
 
 }
-int array_list::LocateElem(SqList l,ElemType e)
+int array_list::LocateElem(ElemType e)
 {
     int i;
     int flag=0;
-    for(i=0;i<l.length;i++)
+    for(i=0;i<L->length;i++)
     {
-        if(e==l.data[i])
+        if(e==L->data[i])
         {
             flag=1;
             return i+1;
@@ -53,39 +53,39 @@ int array_list::LocateElem(SqList l,ElemType e)
         return 0;
     }
 }
-bool array_list::ListInsert(SqList *l,int i,ElemType e)
+bool array_list::ListInsert(int i,ElemType e)
 {
     int k;
-    if(l->length==MAXSIZE)
+    if(L->length==MAXSIZE)
         return false;
-    if(i<1||i>l->length)
+    if(i<1||i>L->length)
         return false;
-    if(i<l->length)
+    if(i<L->length)
     {
-        for(k=l->length-1;k>=i-1;k--)//插入从后开始插
-            l->data[k+1]=l->data[k];
+        for(k=L->length-1;k>=i-1;k--)//插入从后开始插
+            L->data[k+1]=L->data[k];
     }
-    l->data[i-1]=e;
-    l->length++;
+    L->data[i-1]=e;
+    L->length++;
     return true;
 }
-bool array_list::ListDelete(SqList *l,int i,ElemType &e)
+bool array_list::ListDelete(int i,ElemType &e)
 {
     int k;
-    if(l->length==0)
+    if(L->length==0)
         return false;
-    if(i<1||i>l->length)
+    if(i<1||i>L->length)
         return false;
-    e=l->data[i-1];
-    if(i<l->length)
+    e=L->data[i-1];
+    if(i<L->length)
     {
-        for(k=i;k<l->length;k++)
-            l->data[k-1]=l->data[k];
+        for(k=i;k<L->length;k++)
+            L->data[k-1]=L->data[k];
     }
-    l->length--;
+    L->length--;
     return true;
 }
-int array_list::ListLength(SqList l)
+int array_list::ListLength()
 {
-    return l.length;
+    return L->length;
 }
