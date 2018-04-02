@@ -14,17 +14,17 @@ typedef struct
 
 class array_list
 {
-private:
+public:
     SqList *L;
 public:
     void InitList(SqList* l);
-    bool ListEmpty(SqList l);
+    bool ListEmpty(SqList *l);
     void ClearList(SqList* l);
-    bool GetElem(SqList l,int i,ElemType *e);
+    bool GetElem(SqList *l,int i,ElemType &e);
     int LocateElem(SqList l,ElemType e);
     bool ListInsert(SqList *l,int i,ElemType e);
-    bool ListDelete(SqList *l,int i,ElemType *e);
-    void ListLength(SqList l);
+    bool ListDelete(SqList *l,int i,ElemType &e);
+    int ListLength(SqList l);
 };
 
 

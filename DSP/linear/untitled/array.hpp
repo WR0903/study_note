@@ -4,11 +4,11 @@
 
 using namespace std;
 
-bool array_list::GetElem(SqList l,int i,ElemType *e)
+bool array_list::GetElem(SqList *l,int i,ElemType &e)
 {
-    if(l.length==0||i<1||i>l.length)
+    if(l->length==0||i<1||i>l->length)
         return false;
-    *e=l.data[i-1];
+    e=l->data[i-1];
     return true;
 }
 
@@ -16,19 +16,42 @@ bool array_list::GetElem(SqList l,int i,ElemType *e)
 
 void array_list::InitList(SqList* l)
 {
-
+    //l->data[]=0;
+    l->length=1;
+    //l->length=1;
 }
-bool array_list::ListEmpty(SqList l)
+bool array_list::ListEmpty(SqList *l)
 {
-
+    if(l->length==0)
+        return true;
+    else
+        return false;
 }
 void array_list::ClearList(SqList* l)
 {
+    while(l->length>0)
+    {
+        l->data[l->length-1]=0;
+        l->length--;
+    }
 
 }
 int array_list::LocateElem(SqList l,ElemType e)
 {
-
+    int i;
+    int flag=0;
+    for(i=0;i<l.length;i++)
+    {
+        if(e==l.data[i])
+        {
+            flag=1;
+            return i+1;
+        }
+    }
+    if(0==flag)
+    {
+        return 0;
+    }
 }
 bool array_list::ListInsert(SqList *l,int i,ElemType e)
 {
@@ -46,14 +69,14 @@ bool array_list::ListInsert(SqList *l,int i,ElemType e)
     l->length++;
     return true;
 }
-bool array_list::ListDelete(SqList *l,int i,ElemType *e)
+bool array_list::ListDelete(SqList *l,int i,ElemType &e)
 {
     int k;
     if(l->length==0)
         return false;
     if(i<1||i>l->length)
         return false;
-    *e=l->data[i-1];
+    e=l->data[i-1];
     if(i<l->length)
     {
         for(k=i;k<l->length;k++)
@@ -62,7 +85,7 @@ bool array_list::ListDelete(SqList *l,int i,ElemType *e)
     l->length--;
     return true;
 }
-void array_list::ListLength(SqList l)
+int array_list::ListLength(SqList l)
 {
-
+    return l.length;
 }
