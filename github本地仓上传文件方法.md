@@ -6,8 +6,8 @@
 `git config --global user.name "xxxx" `
 `git config --global user.email xxxxx@qq.com`
 新建repository,注意复制红圈标记的地址  
-![](1.jpg)  
-![](2.jpg)  
+![](1.png)  
+![](2.png)  
 关联本地仓库并上传代码  
 `git remote add origin https://github.com/Yanyf765/hr_sys.git（上步骤复制的地址）`
 
