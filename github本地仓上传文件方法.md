@@ -3,8 +3,8 @@
 * 首先建立本地仓
 在本地项目目录创建本地仓库`git init`  
 输入个人信息(代码提交者)  
-`git config --global user.name "xxxx" `
-`git config --global user.email xxxxx@qq.com`
+`git config --global user.name "xxxx" `  
+`git config --global user.email xxxxx@qq.com`  
 新建repository,注意复制红圈标记的地址  
 ![](1.png)  
 ![](2.png)  
