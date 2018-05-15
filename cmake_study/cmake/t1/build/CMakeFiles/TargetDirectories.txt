@@ -1,3 +1,0 @@
-/home/wr/WHR/cmake_study/cmake/t1/build/CMakeFiles/edit_cache.dir
-/home/wr/WHR/cmake_study/cmake/t1/build/CMakeFiles/rebuild_cache.dir
-/home/wr/WHR/cmake_study/cmake/t1/build/CMakeFiles/hello.dir
