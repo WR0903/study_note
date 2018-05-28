@@ -27,7 +27,7 @@ int main(int argc, char** argv)
         printf("ERROR: init() failed\n");
         return -1;
     }
-    tracker.setPatternWidth(7);
+    tracker.setPatternWidth(80);
     tracker.setBorderWidth(useBCH ? 0.125 : 0.25);
     tracker.setThreshold(150);//阈值，也可以自动阈值
     tracker.setUndistortionMode(ARToolKitPlus::UNDIST_LUT);
