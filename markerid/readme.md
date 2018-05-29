@@ -8,7 +8,7 @@
 * 运行
 ```
 roscore
-rosrun uvc _ camera uvc _ camera _ node
+rosrun uvc_camera uvc_camera_node
 rosrun markerid marker 
 rostopic echo /PoseStamped_mark 
 ```
