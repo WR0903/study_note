@@ -2186,3 +2186,85 @@ public:
     }
 };
 ```
+## Fraction to Recurring Decimal ##
+- Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.
+- If the fractional part is repeating, enclose the repeating part in parentheses.
+- Example 1:
+
+```
+Input: numerator = 1, denominator = 2
+Output: "0.5"
+```
+- Example 2:
+
+```
+Input: numerator = 2, denominator = 1
+Output: "2"
+```
+- Example 3:
+
+```
+Input: numerator = 2, denominator = 3
+Output: "0.(6)"
+```
+- 思路：设计的内容挺多的，负数的处理，INT_MIN的处理，将INT_MIN转化为正数会溢出，因此要使用long long int来计算。重点在于小数部分的处理，因为小数部分有可能会出现循环。所以我们可以设置一个哈希表，存储每一次的余数，以及该余数在返回结果ans中的下标。每一次得到新的余数，就查询该余数是否已经在哈希表中，是的话说明开始循环了，那么直接在ans中该余数对应的位置后面插入‘（’，ans末尾加上‘）’，结束运算。如果在哈希表中没找到，则继续正常运运算。代码如下：
+
+```
+class Solution {
+public:
+	string fractionToDecimal(int numerator, int denominator) {
+		if(numerator==0)
+            return "0";
+        string ans = "";
+		int flag = 0;
+		unordered_map<int, int> m;
+		if (numerator<0 ^ denominator<0) ans += '-';
+		long long int n = numerator;
+		n = abs(n);
+		long long int d = denominator;
+		d = abs(d);
+		while (n)
+		{
+			long long int numerator_1 = n;
+			int num = 0;
+			while (numerator_1<d && (flag == 0))
+			{
+				num++;
+				
+				if (ans == ""||ans=="-")
+					ans += "0.";
+				else
+					ans += ".";
+				m[numerator_1] = ans.size();
+				numerator_1 *= 10;
+				flag = 1;
+			}
+			while (numerator_1<d)
+			{
+				if (m.find(numerator_1) != m.end())
+				{
+					ans.insert(m[numerator_1], 1, '(');
+
+					ans = ans + ")";
+					numerator_1 = 0;
+					break;
+				}
+				
+				num++;
+				if (num >= 2)
+					ans += '0';
+				m[numerator_1] = ans.size();
+				numerator_1 *= 10;
+			}
+			if (numerator_1 == 0)
+				break;
+			string tmp_s = to_string(numerator_1 / d);
+			int tmp_i = numerator_1%d;
+			ans = ans + tmp_s;
+			n = tmp_i;
+			
+		}
+		return ans;
+	}
+};
+```
