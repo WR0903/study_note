@@ -2268,3 +2268,216 @@ public:
 	}
 };
 ```
+## Binary Search Tree Iterator ##
+- Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.
+- Calling next() will return the next smallest number in the BST.
+- Example:
+![](Binary_Search_Tree_Iterator.png)
+```
+BSTIterator iterator = new BSTIterator(root);
+iterator.next();    // return 3
+iterator.next();    // return 7
+iterator.hasNext(); // return true
+iterator.next();    // return 9
+iterator.hasNext(); // return true
+iterator.next();    // return 15
+iterator.hasNext(); // return true
+iterator.next();    // return 20
+iterator.hasNext(); // return false
+```
+- Note:
+	1. next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree.
+	2. You may assume that next() call will always be valid, that is, there will be at least a next smallest number in the BST when next() is called.
+
+- 思路：我的思路是：使用容器，因为要顺序打印，所以先把树进行中序迭代，迭代效果放在容器中，然后一个一个的取。
+
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class BSTIterator {
+public:
+    BSTIterator(TreeNode* root) {
+        order(root);
+        i=0;
+    }
+    
+    /** @return the next smallest number */
+    int next() {
+        return v[i++];
+        
+        //cout<<i<<endl;
+    }
+    
+    /** @return whether we have a next smallest number */
+    bool hasNext() {
+        return i<v.size()? true:false;
+    }
+    vector<int> v;
+    int i;
+    void order(TreeNode* root)
+    {
+        if(root)
+        {
+            
+            order(root->left);
+            v.push_back(root->val);
+            order(root->right);
+        }
+    }
+};
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator* obj = new BSTIterator(root);
+ * int param_1 = obj->next();
+ * bool param_2 = obj->hasNext();
+ */
+```
+## Largest Number ##
+- Given a list of non negative integers, arrange them such that they form the largest number.
+- Example 1:
+
+```
+Input: [10,2]
+Output: "210"
+```
+- Example 2:
+
+```
+Input: [3,30,34,5,9]
+Output: "9534330"
+```
+- Note: The result may be very large, so you need to return a string instead of an integer.
+- 思路：关键是确定每个数在最后结果中的先后位置，比较直观的是个位数越大的越靠前，如例子中9在5, 4, 3之前；个位相同的再看十位，如例子中34应当在30之前；难点是位数不等时，先后关系怎么确定？如例子中3应当放在30和34之前、之后还是中间？结果是3放在了34和30中间，为什么呢？这是因为十位上的4比个位上3大，所以34在3之前，而十位上的0比个数上的3小，所以30在3之后。这样貌似可以找到规律，就是对于那些有包含关系的数，如1234包含12，那么只需看1234比12多出的部分34比12大还是小。通过这样的方法，貌似也可判断出个先后顺序。只是这样需要考虑的情况太复杂了，如565656和56……可以换一下思路，要想比较两个数在最终结果中的先后位置，何不直接比较一下不同组合的结果大小？举个例子：要比较3和34的先后位置，可以比较334和343的大小，而343比334大，所以34应当在前。这样，有了比较两个数的方法，就可以对整个数组进行排序。然后再把排好序的数拼接在一起就好了。
+
+```
+class Solution {
+public:
+    string largestNumber(vector<int>& nums) {
+        vector<string> v;
+        for(auto i:nums)
+        {
+            v.push_back(to_string(i));
+        }
+        sort(v.begin(),v.end(),cmp);
+        string ans="";
+        for(auto tmp:v)
+            ans+=tmp;
+        while(ans[0]=='0'&&ans.size()>1)
+            ans.erase(0,1);
+        return ans;
+    }
+    static bool cmp(string a,string b)
+    {
+        return a+b>b+a;
+    }
+};
+```
+## Repeated DNA Sequences ##
+- All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: "ACGAATTCCG". When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.
+- Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.
+- Example:
+
+```
+Input: s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+
+Output: ["AAAAACCCCC", "CCCCCAAAAA"]
+```
+- 思路：建立一个hash表，把每个10位的子字符串和hash表进行比较，如果在，说明是重复子字符串，否则加入hash表中。
+
+```
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        vector<string> ans;
+        if(s.size()<=10)
+            return ans;
+        unordered_map<string,int> u_s;
+        string tmp;
+        for(int i=0;i<s.size()-9;i++)
+        {
+            tmp=s.substr(i,10);
+            if(u_s.find(tmp)!=u_s.end())
+            {
+                if(u_s[tmp]==1)
+                {
+                    ans.push_back(tmp);
+                    u_s[tmp]++;
+                }
+                else
+                    u_s[tmp]++;
+            }
+            else
+            {
+                u_s[tmp]=1;
+            }
+        }
+        return ans;
+    }
+};
+```
+## Binary Tree Right Side View ##
+- Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
+- Example:
+
+```
+Input: [1,2,3,null,5,null,4]
+Output: [1, 3, 4]
+Explanation:
+
+   1            <---
+ /   \
+2     3         <---
+ \     \
+  5     4       <---
+```
+- 思路：层序遍历，结果只保留每一层的最后一个元素。
+
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+        if(!root)
+            return {};
+        if(!root->left&&!root->right)
+            return {root->val};
+        vector<int>ans;
+        queue<TreeNode*> q;
+        queue<TreeNode*> q_next;
+        q.push(root);
+        while(!q.empty())
+        {
+            TreeNode* tmp=q.front();
+            if(q.size()==1)
+            {
+                ans.push_back(tmp->val);
+            }
+            if(tmp->left)
+                q_next.push(tmp->left);
+            if(tmp->right)
+                q_next.push(tmp->right);
+            q.pop();
+            if(q.empty())
+                swap(q,q_next);
+        }
+        return ans;
+    }
+};
+```
+
