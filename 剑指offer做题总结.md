@@ -534,4 +534,674 @@ public:
     }
 };
 ```
+## 顺时针打印矩阵 ##
+- 题目描述:输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： {{1 2 3 4} {5 6 7 8} {9 10 11 12} {13 14 15 16}} 则依次打印出数1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.
+
+```
+class Solution {
+public:
+    vector<int> printMatrix(vector<vector<int> > matrix) {
+        if(matrix.size()==0||matrix[0].size()==0)
+            return {};
+        int rows=matrix.size();
+        int cols=matrix[0].size();
+        int start=0;
+        vector<int> ans;
+        while(cols>start*2&&rows>start*2)
+        {
+            PrintMatrixCircle(matrix,cols,rows,start,ans);
+            start++;
+        }
+        return ans;
+    }
+    void PrintMatrixCircle(vector<vector<int> > matrix,int cols,int rows,int start,vector<int>& ans)
+    {
+        int endX=cols-1-start;
+        int endY=rows-1-start;
+        for(int i=start;i<=endX;i++)
+        {
+            ans.push_back(matrix[start][i]);
+        }
+        if(start<endY)
+        {
+            for(int i=start+1;i<=endY;i++)
+            {
+                ans.push_back(matrix[i][endX]);
+            }
+        }
+        if(start<endX&&start<endY)
+        {
+            for(int i=endX-1;i>=start;i--)
+            {
+                ans.push_back(matrix[endY][i]);
+            }
+        }
+        if(start<endX&&start<endY-1)
+        {
+            for(int i=endY-1;i>=start+1;i--)
+            {
+                ans.push_back(matrix[i][start]);
+            }
+        }
+    }
+};
+```
+## 包含min函数的栈 ##
+- 题目描述：定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+
+```
+class Solution {
+public:
+    void push(int value) {
+        m_data.push(value);
+        if(m_min.size()==0||value<m_min.top())
+            m_min.push(value);
+        else
+            m_min.push(m_min.top());
+    }
+    void pop() {
+        m_data.pop();
+        m_min.pop();
+        
+    }
+    int top() {
+        return m_data.top();
+        
+    }
+    int min() {
+        return m_min.top();
+    }
+    stack<int> m_data;
+    stack<int> m_min;
+};
+```
+## 栈的压入、弹出序列 ##
+- 题目描述：输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）
+
+```
+class Solution {
+public:
+    bool IsPopOrder(vector<int> pushV,vector<int> popV) {
+        bool ans=false;
+        int i=0;
+        if(!pushV.empty()&&!popV.empty())
+        {
+            stack<int> s_data;
+            
+            while(!popV.empty())
+            {
+                while(s_data.empty()||s_data.top()!=popV.front())
+                {
+                    if(popV.empty())
+                    {
+                        break;
+                    }
+                    s_data.push(pushV[i]);
+                    i++;
+                }
+                s_data.pop();
+                popV.erase(popV.begin());
+            }
+            if(s_data.empty()&&i==pushV.size())
+                ans=true;
+        }
+        return ans;
+    }
+};
+```
+## 从上往下打印二叉树 ##
+- 题目描述：从上往下打印出二叉树的每个节点，同层节点从左至右打印。
+
+```
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    vector<int> PrintFromTopToBottom(TreeNode* root) {
+        vector <int> ans;
+        if(!root)
+            return ans;
+        deque<TreeNode*> d_treeNode;
+        d_treeNode.push_back(root);
+        while(d_treeNode.size())
+        {
+            TreeNode* tmp=d_treeNode.front();
+            d_treeNode.pop_front();
+            ans.push_back(tmp->val);
+            if(tmp->left)
+                d_treeNode.push_back(tmp->left);
+            if(tmp->right)
+                d_treeNode.push_back(tmp->right);
+        }
+        return ans;
+    }
+};
+```
+## 二叉搜索树的后序遍历序列 ##
+- 题目描述：输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。
+
+```
+class Solution {
+public:
+	bool VerifySquenceOfBST(vector<int> sequence) {
+		if (sequence.empty())
+			return false;
+		int root = sequence.back();
+		int i = 0;
+		for (; i<sequence.size()-1; i++)
+		{
+			if (sequence[i]>root)
+				break;
+		}
+		int j = i;
+		for (; j<sequence.size()-1; j++)
+		{
+			if (sequence[j]<root)
+				return false;
+		}
+		bool left = true;
+		if (i>0)
+		{
+			vector<int>s_l(sequence.begin(), sequence.begin() + i);
+			left = VerifySquenceOfBST(s_l);
+		}
+		bool right = true;
+		if (i<sequence.size() - 1)
+		{
+			vector<int>s_r(sequence.begin() + i, sequence.end()-1);
+			right = VerifySquenceOfBST(s_r);
+		}
+		return (left&&right);
+	}
+};
+```
+## 二叉树中和为某一值的路径 ##
+- 题目描述：输入一颗二叉树的跟节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
+
+```
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    vector<vector<int> > FindPath(TreeNode* root,int expectNumber) {
+        vector<vector<int> > ans;
+        vector<int> tmp;
+        if(!root)
+            return ans;
+        pathcal(root,expectNumber,tmp,ans);
+        return ans;
+    }
+    void pathcal(TreeNode* root,int expectNumber,vector<int> tmp,vector<vector<int>>&ans)
+    {
+        tmp.push_back(root->val);
+        if(!root->left&&!root->right&&root->val==expectNumber)
+        {
+            ans.push_back(tmp);
+            return;
+        }
+        else if(!root->left&&!root->right&&root->val!=expectNumber)
+            return;
+        if(root->left)
+            pathcal(root->left,expectNumber-root->val,tmp,ans);
+        if(root->right)
+            pathcal(root->right,expectNumber-root->val,tmp,ans);
+    }
+};
+```
+## 复杂链表的复制 ##
+- 题目描述：输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
+
+```
+/*
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    RandomListNode* Clone(RandomListNode* pHead)
+    {
+        if(!pHead)
+            return NULL;
+        unordered_map<RandomListNode*,RandomListNode*>m;
+        RandomListNode* CloneHead=new RandomListNode(pHead->label);
+        RandomListNode* curC=CloneHead;
+        RandomListNode* cur=pHead->next;
+        m[pHead]=curC;
+        while(cur)
+        {
+            curC->next=new RandomListNode(cur->label);
+            curC=curC->next;
+            m[cur]=curC;
+            cur=cur->next;
+        }
+        curC->next=NULL;
+        cur=pHead;
+        curC=CloneHead;
+        while(cur)
+        {
+            if(m.find(cur->random)!=m.end())
+                curC->random=m[cur->random];
+            cur=cur->next;
+            curC=curC->next;
+        }
+        return CloneHead;
+    }
+};
+```
+## 二叉搜索树与双向链表 ##
+- 题目描述：输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
+
+```
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    TreeNode* Convert(TreeNode* pRootOfTree)
+    {
+        TreeNode* plastHead=NULL;
+        ConvertNode(pRootOfTree,&plastHead);
+        TreeNode* head=plastHead;
+        while(head&&head->left)
+            head=head->left;
+        return head;
+    }
+    void ConvertNode(TreeNode* pNode,TreeNode** pLastNodeInList)
+    {
+        if(!pNode)
+            return ;
+        TreeNode* pCur=pNode;
+        if(pCur->left)
+        {
+            ConvertNode(pCur->left,pLastNodeInList);
+        }
+        pCur->left=*pLastNodeInList;
+        if(*pLastNodeInList)
+            (*pLastNodeInList)->right=pCur;
+        *pLastNodeInList=pCur;
+        if(pCur->right)
+            ConvertNode(pCur->right,pLastNodeInList);
+    }
+};
+```
+## 字符串的排序 ##
+- 题目描述
+输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。
+
+```
+class Solution {
+public:
+    vector<string> Permutation(string str) {
+        vector<string> ans;
+        int n=str.size();
+        if(n==0)
+            return ans;
+        Permutation(str,0,n,ans);
+        return ans;
+    }
+    void Permutation(string str,int i,int num,vector<string>& ans)
+    {
+        if(i==num)
+        {
+            if(find(ans.begin(),ans.end(),str)==ans.end())
+                ans.push_back(str);
+        }
+        else
+        {
+            for(int k=i;k<num;k++)
+            {
+                char tmp=str[i];
+                str[i]=str[k];
+                str[k]=tmp;
+                
+                Permutation(str,i+1,num,ans);
+                
+                tmp=str[i];
+                str[i]=str[k];
+                str[k]=tmp;
+            }
+        }
+    }
+};
+```
+## 数组中出现次数超过一半的数字 ##
+- 题目描述：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
+
+```
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+        unordered_map<int,int> m;
+        int n=numbers.size();
+        int ans=0;
+        for(int i=0;i<n;i++)
+        {
+            if(m.find(numbers[i])!=m.end())
+            {
+                m[numbers[i]]++;
+            }
+            else
+            {
+                m[numbers[i]]=1;
+            }
+        }
+        for(auto it:m)
+        {
+            if(it.second>n/2)
+            {
+                ans=it.first;
+                break;
+            }
+        }
+        return ans;
+    }
+};
+```
+## 最小的K个数 ##
+- 题目描述：输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。
+
+```
+class Solution {
+public:
+    vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
+        multiset<int,greater<int>> intset;
+        intset.clear();
+        if(k<1||input.size()<k)
+            return {};
+        for(int i=0;i<input.size();i++)
+        {
+            if(intset.size()<k)
+                intset.insert(input[i]);
+            else
+            {
+                auto iter=intset.begin();
+                if(input[i]<*iter)
+                {
+                    
+                    intset.erase(iter);
+                    intset.insert(input[i]);
+                }
+            }
+        }
+        vector<int> ans(intset.begin(),intset.end());
+        return ans;
+    }
+};
+```
+## 连续子数组的最大和 ##
+- 题目描述：HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。给一个数组，返回它的最大连续子序列的和，你会不会被他忽悠住？(子向量的长度至少是1)
+
+```
+class Solution {
+public:
+    bool g_InvalidInput=false;
+    int FindGreatestSumOfSubArray(vector<int> array) {
+        if(array.empty())
+        {
+            g_InvalidInput=true;
+            return 0;
+        }
+        g_InvalidInput=false;
+        int cursum=0;
+        int greatsum=0x80000000;
+        for(int i=0;i<array.size();i++)
+        {
+            if(cursum<=0)
+                cursum=array[i];
+            else 
+                cursum+=array[i];
+            if(greatsum<cursum)
+                greatsum=cursum;
+        }
+        return greatsum;
+    }
+};
+```
+## 把数组排成最小的数 ##
+- 题目描述：输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。
+
+```
+class Solution {
+public:
+    static bool cmp(string &s1,string &s2)
+    {
+        return s1+s2<s2+s1;
+    }
+    string PrintMinNumber(vector<int> numbers) {
+        if(numbers.empty())
+            return "";
+        vector<string> v_s;
+        for(int i=0;i<numbers.size();i++)
+            v_s.push_back(to_string(numbers[i]));
+        sort(v_s.begin(),v_s.end(),cmp);
+        string ans="";
+        for(int i=0;i<v_s.size();i++)
+            ans+=v_s[i];
+        return ans;
+    }
+};
+```
+## 第一次只出现一次的字符 ##
+- 题目描述：在一个字符串(0<=字符串长度<=10000，全部由字母组成)中找到第一个只出现一次的字符,并返回它的位置, 如果没有则返回 -1（需要区分大小写）
+
+```
+class Solution {
+public:
+    int FirstNotRepeatingChar(string str) {
+        if(str.empty())
+            return -1;
+        const int tablesize=256;
+        unsigned int hashtable[tablesize];
+        for(unsigned int i=0;i<tablesize;i++)
+            hashtable[i]=0;
+        for(int i=0;i<str.size();i++)
+            hashtable[str[i]]++;
+        for(int i=0;i<str.size();i++)
+        {
+            if(hashtable[str[i]]==1)
+                return i;
+        }
+        return -1;
+            
+    }
+};
+```
+## 丑数 ##
+- 题目描述：把只包含质因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含质因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。
+
+```
+class Solution {
+public:
+    int GetUglyNumber_Solution(int index) {
+        if(index<=0)
+            return 0;
+        int *pUglyNum=new int[index];
+        pUglyNum[0]=1;
+        int nextUglyIndex=1;
+        int *pMultiply2=pUglyNum;
+        int *pMultiply3=pUglyNum;
+        int *pMultiply5=pUglyNum;
+        while(nextUglyIndex<index)
+        {
+            int min=Min(*pMultiply2*2,*pMultiply3*3,*pMultiply5*5);
+            pUglyNum[nextUglyIndex]=min;
+            while(*pMultiply2*2<=pUglyNum[nextUglyIndex])
+                pMultiply2++;
+            while(*pMultiply3*3<=pUglyNum[nextUglyIndex])
+                pMultiply3++;
+            while(*pMultiply5*5<=pUglyNum[nextUglyIndex])
+                pMultiply5++;
+            nextUglyIndex++;
+        }
+        int ans=pUglyNum[nextUglyIndex-1];
+        delete[] pUglyNum;
+        return ans;
+    }
+    int Min(int n1,int n2,int n3)
+    {
+        int min=(n1<n2)? n1:n2;
+        min=(min<n3)? min:n3;
+        return min;
+    }
+};
+```
+## 两个链表的第一个公共结点 ##
+- 题目描述：输入两个链表，找出它们的第一个公共结点。
+
+```
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* FindFirstCommonNode( ListNode* pHead1, ListNode* pHead2) {
+        unsigned int nlength1=getlength(pHead1);
+        unsigned int nlength2=getlength(pHead2);
+        int lengthdif=nlength1-nlength2;
+        
+        ListNode* plistlong=pHead1;
+        ListNode* plistshort=pHead2;
+        if(nlength2>nlength1)
+        {
+            lengthdif=nlength2-nlength1;
+            ListNode* plistlong=pHead2;
+            ListNode* plistshort=pHead1;
+        }
+        for(int i=0;i<lengthdif;i++)
+            plistlong=plistlong->next;
+        while(plistlong&&plistshort&&(plistlong!=plistshort))
+        {
+            plistlong=plistlong->next;
+            plistshort=plistshort->next;
+        }
+        return plistshort;
+    }
+    int getlength(ListNode* pHead)
+    {
+        int ans=0;
+        ListNode* pNode=pHead;
+        while(pNode!=NULL)
+        {
+            ans++;
+            pNode=pNode->next;
+        }
+        return ans;
+    }
+};
+```
+## 数字在排序数组中出现的次数 ##
+- 题目描述：统计一个数字在排序数组中出现的次数。 
+
+```
+class Solution {
+public:
+    int GetNumberOfK(vector<int> data ,int k) {
+        int ans=0;
+        if(data.size()!=0)
+        {
+            int first=getfirstk(data,k,0,data.size()-1);
+            int last=getlastk(data,k,0,data.size()-1);
+            if(first>-1&&last>-1)
+                ans=last-first+1;
+            
+        }
+        return ans;
+    }
+    int getfirstk(vector<int> data,int k,int start,int end)
+    {
+        if(start>end)
+            return -1;
+        int mid=(start+end)/2;
+        int middata=data[mid];
+        if(middata==k)
+        {
+            if((mid>0&&data[mid-1]!=k)||(mid==0))
+                return mid;
+            else
+                end=mid-1;
+        }
+        else if(middata>k)
+            end=mid-1;
+        else
+            start=mid+1;
+        return getfirstk(data,k,start,end);
+    }
+    int getlastk(vector<int> data,int k,int start,int end)
+    {
+        if(start>end)
+            return -1;
+        int mid=(start+end)/2;
+        int middata=data[mid];
+        if(middata==k)
+        {
+            if((mid<data.size()-1&&data[mid+1]!=k)||(mid==data.size()-1))
+                return mid;
+            else
+                start=mid+1;
+        }
+        else if(middata>k)
+            end=mid-1;
+        else
+            start=mid+1;
+        return getlastk(data,k,start,end);
+    }
+};
+```
+## 二叉树的深度 ##
+- 题目描述：输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。
+
+```
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    int TreeDepth(TreeNode* pRoot)
+    {
+        if(pRoot==NULL)
+            return 0;
+        int left=TreeDepth(pRoot->left);
+        int right=TreeDepth(pRoot->right);
+        return (left>right)? (left+1):(right+1);
+    }
+};
+```
+
+
 

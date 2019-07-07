@@ -1,5 +1,82 @@
 # leetcode做题总结 #
 
+## Two Sum ##
+- Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+- You may assume that each input would have exactly one solution, and you may not use the same element twice.
+- Example:
+
+```
+Given nums = [2, 7, 11, 15], target = 9,
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+```
+- 思路1：两层循环，第二层循环在第一层之后，两个数的和等于目标值就压入。时间复杂度：O（n<sup>2</sup>）
+
+```
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> ans;
+        int flag=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            int tmp=target-nums[i];
+            for(int j=i+1;j<nums.size();j++)
+            {
+                if(tmp==nums[j])
+                {
+                    ans.push_back(i);
+                    ans.push_back(j);
+                    flag=1;
+                    return ans;
+                    break;
+                    //return vector<int>{i,j}
+                }
+            }
+            if(flag==1)
+                break;
+        }
+        return ans;
+    }
+};
+```
+- 思路2：利用hash表，把数组每个元素放进hash表，在hash表中寻找另一个差值，时间复杂度：O(n)，空间复杂度：O(n)
+
+```
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> ans;
+        unordered_map<int,int> m;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(m.find(target-nums[i])!=m.end())
+            {
+                if(i!=m[target-nums[i]])
+                {
+                    if(i>m[target-nums[i]])
+                    {
+                        ans.push_back(m[target-nums[i]]);
+                        ans.push_back(i);
+                        break;
+                    }
+                    else if(i<m[target-nums[i]])
+                    {
+                        ans.push_back(i);
+                        ans.push_back(m[target-nums[i]]);
+                        break;
+                    }
+                }
+            }
+            m[nums[i]]=i;
+            
+        }
+        
+        return ans;
+    }
+};
+```
+
 ## Binary Tree Level Order Traversal ##
 - Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 - For example:
@@ -191,46 +268,7 @@ public:
 };
 ```
 
-## Two Sum ##
-- Given an array of integers, return indices of the two numbers such that they add up to a specific target.
-- You may assume that each input would have exactly one solution, and you may not use the same element twice.
-- Example:
 
-```
-Given nums = [2, 7, 11, 15], target = 9,
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
-```
-- 思路：两层循环，第二层循环在第一层之后，两个数的和等于目标值就压入。
-
-```
-class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> ans;
-        int flag=0;
-        for(int i=0;i<nums.size();i++)
-        {
-            int tmp=target-nums[i];
-            for(int j=i+1;j<nums.size();j++)
-            {
-                if(tmp==nums[j])
-                {
-                    ans.push_back(i);
-                    ans.push_back(j);
-                    flag=1;
-                    return ans;
-                    break;
-                    //return vector<int>{i,j}
-                }
-            }
-            if(flag==1)
-                break;
-        }
-        return ans;
-    }
-};
-```
 ## Validate Binary Search Tree ##
 - Given a binary tree, determine if it is a valid binary search tree (BST).
 - Assume a BST is defined as follows:
@@ -2480,4 +2518,5 @@ public:
     }
 };
 ```
+
 
