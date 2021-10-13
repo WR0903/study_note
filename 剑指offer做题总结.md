@@ -99,7 +99,7 @@ F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
 
 **例程**
 
-```
+```c++
 class Solution {
 public:
     int fib(int n) {
