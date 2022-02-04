@@ -153,9 +153,55 @@ pthread_cond_broadcast(&mycv); // 释放条件变量，并让所有wait线程运
 
 ### 读写锁的使用
 
+```c++
+pthread_rwlock_t myrwlock; //定义一个读写锁
+pthread_rwlock_init(&myrwlock, NULL); //一般主线程的主函数初始化读写锁
+pthread_rwlock_destroy(&myrwlock);  //程序退出的时候，要销毁读写锁
+
+pthread_rwlock_rdlock(&myrwlock);  //请求读锁，如果被写锁占有则线程阻塞
+pthread_rwlock_tryrdlock(&myrwlock);  //尝试请求读锁，不会阻塞线程
+struct timespec ts;
+		ts.tv_sec = 3;
+		ts.tv_nsec = 0;
+pthread_rwlock_timedtryrdlock(&myrwlock, &ts);  //会让线程阻塞ts时间尝试获取读锁
+
+pthread_rwlock_wrdlock(&myrwlock);  //请求写锁，如果被写锁或者读锁占有则线程阻塞
+pthread_rwlock_trywrdlock(&myrwlock);  //尝试请求写锁，不会阻塞线程
+struct timespec ts;
+		ts.tv_sec = 3;
+		ts.tv_nsec = 0;
+pthread_rwlock_timedtrywrdlock(&myrwlock, &ts);  //会让线程阻塞ts时间尝试获取写锁
+
+pthread_rwlock_unlock(&myrwlock); //读写锁统一用该接口释放锁
+
+pthread_rwlockattr_t attr;
+pthread_rwlockattr_init(&attr);
+//设置成请求写锁优先
+pthread_rwlockattr_setkind_np(&attr, PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP);
+//PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP 写锁优先
+//PTHREAD_RWLOCK_PREFER_READER_NP//读锁优先
+pthread_rwlock_init(&myrwlock, &attr);
+```
 
 
 
+### c++11的线程同步
 
+以上的线程同步方式分为linux和win（没总结），c++11做了封装：
 
+```c++
+std::mutex g_num_mutex; //互斥锁
+g_num_mutex.lock();  //加锁
+g_num_mutex.unlock();  //解锁
+```
+
+```c++
+std::condition_variable   mycv; //条件变量
+mycv.wait(guard); //等待信号
+mycv.notify_one(); //释放信号
+```
+
+```c++
+thread_local int g_mydata = 1; //每个线程都独立拥有该变量，每个线程的该变量值都不同
+```
 
